@@ -7,7 +7,7 @@ const ProfilePage = () => {
 
     useEffect(() =>{
     axios
-        .get(`https://elegant-sfogliatella-0c6751.netlify.app/user/profile/${id}`)
+        .get(`https://lazy-ruby-cocoon-wig.cyclic.app/user/profile/${id}`)
         .then(response => setOwnImages(...ownImages, response.data))
         .catch(err => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps

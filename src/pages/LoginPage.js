@@ -16,7 +16,7 @@ const LoginPage = () => {
       const requestBody = { email, password };
     
       axios
-          .post(`https://elegant-sfogliatella-0c6751.netlify.app/auth/login`, requestBody)
+          .post(`https://lazy-ruby-cocoon-wig.cyclic.app/auth/login`, requestBody)
           .then((response) => {
             console.log("JWT token", response.data.authToken);
             setToken(response.data.authToken);

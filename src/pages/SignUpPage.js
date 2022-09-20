@@ -13,7 +13,7 @@ const SignUpPage = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post("https://elegant-sfogliatella-0c6751.netlify.app/auth/signup", {email, password, username, name})
+        axios.post("https://lazy-ruby-cocoon-wig.cyclic.app/auth/signup", {email, password, username, name})
             .then(response => console.log(response))
             .catch(err => console.log(err));
             navigate("/");

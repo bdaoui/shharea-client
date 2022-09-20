@@ -18,7 +18,7 @@ const Comment = ({id}) => {
         // uploadData.append("owner", owner)
         // uploadData.append("id", imageId)
         axios
-            .post(`https://elegant-sfogliatella-0c6751.netlify.app/home/image/comment`, {comment, imageId, owner})
+            .post(`https://lazy-ruby-cocoon-wig.cyclic.app/home/image/comment`, {comment, imageId, owner})
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
     }
