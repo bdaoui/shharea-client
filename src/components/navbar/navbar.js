@@ -1,16 +1,25 @@
-import React from 'react'
+import React, {useContext} from 'react';
+import {NavLink} from "react-router-dom"; 
+import {AuthContext} from '../../context/context';
 
-const navbar = () => {
-
-
-
+const NavBar = () => {
+const { logOutUser, user } = useContext(AuthContext);
+const id = user?._id;
     
   return (
-    <div>
+  
+    <nav>
+        <ul>
+          <li><NavLink to={"/home"} > Home</NavLink> </li>
+          <li><NavLink to={`/profile/${id}`}> Profile</NavLink> </li>
+          <li><NavLink to={"/login"}> Log In</NavLink> </li>
+          <li><button onClick={logOutUser}> Log Out</button> </li>
+          
+        </ul>
+    </nav>
+  
 
-
-    </div>
   )
 }
 
-export default navbar
+export default NavBar;
