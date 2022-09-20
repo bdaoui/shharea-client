@@ -16,6 +16,7 @@ const ImagePage = () => {
                 console.log(res)
                 setImage(res.data)})
              .catch((err) => console.log(err));
+             // eslint-disable-next-line react-hooks/exhaustive-deps
      }, [])
      
 

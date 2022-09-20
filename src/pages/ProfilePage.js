@@ -10,6 +10,7 @@ const ProfilePage = () => {
         .get(`http://localhost:5005/user/profile/${id}`)
         .then(response => setOwnImages(...ownImages, response.data))
         .catch(err => console.log(err));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
