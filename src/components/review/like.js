@@ -11,7 +11,7 @@ const Like = ({id}) => {
   const handleLike = (e) => {
     e.preventDefault();  
     axios
-        .post(`http://localhost:5005/home/image/like`, {userId, imageId})
+        .post(`https://elegant-sfogliatella-0c6751.netlify.app/home/image/like`, {userId, imageId})
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
   }
