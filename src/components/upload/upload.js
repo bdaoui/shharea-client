@@ -22,8 +22,8 @@ const Upload = () => {
     axios
         .post('http://localhost:5005/home/upload', uploadData)
         .then((response) => console.log(response))
-        navigate('/home')
         .catch((err) => console.log("Error while uploading the file: ", err));
+        navigate('/home')
     };
 
 

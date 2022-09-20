@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import {AuthContext} from '../../context/context';
 
 const Feed = () => {
@@ -34,7 +35,7 @@ useEffect(() => {
                 width: '25%',
               }}
             />
-            <h2>{item.name}</h2>
+            <Link to={`/home/image/${item._id}`}>{item.name}</Link>
             <span>{item.tags}</span>
             <span>This image was posted by: {item?.owner?.username}</span>
           {/* get profile by id */}
