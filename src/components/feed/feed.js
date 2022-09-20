@@ -37,7 +37,13 @@ useEffect(() => {
             />
             <Link to={`/home/image/${item._id}`}>{item.name}</Link>
             <span>{item.tags}</span>
-            <span>This image was posted by: {item?.owner?.username}</span>
+            <span>This image was posted by: 
+            
+              <Link to={`/user/profile/${item?.owner?._id}`}>
+                {item?.owner?.username}
+              </Link> 
+            </span>
+          
           {/* get profile by id */}
           </div>
         )})}
