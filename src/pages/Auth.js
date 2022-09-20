@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const HomePage = () => {
+const Auth = () => {
   return (
     <div>
         <Link to ="/signup">Signup</Link>
@@ -11,4 +11,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default Auth
