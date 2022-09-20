@@ -61,7 +61,7 @@ const LoginPage = () => {
                             />
                     </div>
 
-                    <div className="mt-6">
+                    <div>
                         <button type="submit">
                             JOIN SHH-AREA
                         </button>
