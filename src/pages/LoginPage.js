@@ -8,7 +8,6 @@ const LoginPage = () => {
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [setErrorMessage] = useState(undefined);
   const { setToken, authenticateUser } = useContext(AuthContext);
 
@@ -22,7 +21,7 @@ const LoginPage = () => {
             console.log("JWT token", response.data.authToken);
             setToken(response.data.authToken);
             authenticateUser();
-            navigate("/");
+            navigate("/home");
           })
           .catch((error) => {
             const errorDescription = error.response.data.message;
