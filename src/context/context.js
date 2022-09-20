@@ -13,7 +13,7 @@ const ApiContext = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState(null);
     const [toggle, setToggle] = useState(false);
-    //const [images, setImages] = useState([]);
+    const [images, setImages] = useState([]);
 
     const setToken = (token) => {
         localStorage.setItem('authToken', token);
@@ -57,7 +57,7 @@ const ApiContext = (props) => {
       },[]);
 
 return (
-    <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle}}>
+    <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle, images, setImages}}>
         {props.children}
     </AuthContext.Provider>
     )
