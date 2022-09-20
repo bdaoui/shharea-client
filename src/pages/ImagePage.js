@@ -51,7 +51,7 @@ const ImagePage = () => {
         {like?.username} liked this
         </h3>)}
 
-        <h1>This images has {image.likes.length} likes</h1>
+        <h1>This images has {image?.likes?.length} likes</h1>
 
           {/* get profile by id */}
           </div>

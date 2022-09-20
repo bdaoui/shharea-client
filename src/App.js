@@ -5,6 +5,7 @@ import SignUpPage from './pages/SignUpPage'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import ImagePage from './pages/ImagePage'
+import ProfilePage from './pages/ProfilePage';
 
 
 
@@ -18,6 +19,8 @@ function App() {
       {/* Can combine all 3 to Auth route @ / and use toggle */}
       <Route path="/home" element={<HomePage />} />
       <Route path="/home/image/:id" element={<ImagePage />} />
+      <Route path="/profile/:id" element={<ProfilePage />} />
+
 
 
     </Routes>
