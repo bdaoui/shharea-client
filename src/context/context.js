@@ -56,6 +56,7 @@ const ApiContext = (props) => {
         authenticateUser();
       },[]);
 
+
 return (
     <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle, images, setImages}}>
         {props.children}
