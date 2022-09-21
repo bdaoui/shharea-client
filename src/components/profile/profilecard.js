@@ -15,7 +15,7 @@ useEffect(()=>{
     .get( `https://lazy-ruby-cocoon-wig.cyclic.app/user/${id}/details` )
     .then(response => setDetails(response.data))
     .catch(err => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
 }, [])
 
 
