@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
 
 
-  
+  console.log(ownImages)
 
 
     return (
@@ -48,9 +48,18 @@ const ProfilePage = () => {
             <div> 
               <h2>This Image Has {item?.comments?.length} comments</h2>
               {item?.comments?.map(comment => {
-                return <p><span>{comment?.owner?.username} said: </span> {comment.comment}</p>
+                return <p key={comment._id}><span>{comment?.owner?.username} said: </span> {comment.comment}</p>
               })}
             </div>
+           
+            <div> 
+              <h2>This Image Has {item?.likes?.length} Likes</h2>
+              {item?.likes?.map(like => {
+                return <p key={like._id}><span>{like?.username} liked it </span></p>
+              })}
+            </div>
+
+
      </div>
         )})}
 
