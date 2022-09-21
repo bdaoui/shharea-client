@@ -44,8 +44,13 @@ const ProfilePage = () => {
             <Link to={`/home/image/${item?._id}`}>{item?.name}</Link>
             
             <span>{item?.tags}</span>
-  
-    
+
+            <div> 
+              <h2>This Image Has {item?.comments?.length} comments</h2>
+              {item?.comments?.map(comment => {
+                return <p><span>{comment?.owner?.username} said: </span> {comment.comment}</p>
+              })}
+            </div>
      </div>
         )})}
 
