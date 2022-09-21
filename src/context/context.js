@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-const API_URL='http://localhost:5005';
+const API_URL='https://lazy-ruby-cocoon-wig.cyclic.app';
 const AuthContext = createContext();
 
 const ApiContext = (props) => {
@@ -55,6 +55,7 @@ const ApiContext = (props) => {
       useEffect(() => { 
         authenticateUser();
       },[]);
+
 
 return (
     <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle, images, setImages}}>

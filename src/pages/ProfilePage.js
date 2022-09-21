@@ -9,18 +9,14 @@ const ProfilePage = () => {
  
     useEffect(() =>{
     axios
-        .get(`http://localhost:5005/user/profile/${id}`)
+        .get(`https://lazy-ruby-cocoon-wig.cyclic.app/user/profile/${id}`)
         .then(response => setOwnImages(response.data))
         .catch(err => console.log(err));
     },[id])    
 
-    axios
-        .get( `http://localhost:5005/user/details`, {id} )
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-   
 
 
+  
 
 
     return (
