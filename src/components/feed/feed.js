@@ -10,7 +10,7 @@ const Feed = () => {
 
 useEffect(() => {
    axios
-        .get('https://lazy-ruby-cocoon-wig.cyclic.app/home/images')
+        .get('http://localhost:5005/home/images')
         .then((res) => setImages(res.data))
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +40,7 @@ useEffect(() => {
             <span>{item.tags}</span>
             <span>This image was posted by: 
             
-              <Link to={`/user/profile/${item?.owner?._id}`}>
+              <Link to={`/profile/${item?.owner?._id}`}>
                 {item?.owner?.username}
               </Link> 
             </span>
