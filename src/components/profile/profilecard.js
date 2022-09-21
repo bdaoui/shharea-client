@@ -9,6 +9,7 @@ const [location, setLocation] = useState("")
 const [info, setInfo] = useState("")
 const userId = user?._id;
 const [details, setDetails] = useState({})
+const [friend, setFriend] = useState(false)
 
 useEffect(()=>{
     axios
@@ -28,6 +29,19 @@ const handleProfile = (e) =>{
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
 }
+
+
+
+const handleFriendship = async () => {
+    await friend ? setFriend(false) : setFriend(true);
+    try{
+       const friendsResponse = await axios.post(`http://localhost:5005/user/${id}/friends`, {userId})
+       console.log(friendsResponse);
+    }
+   catch(error) {console.log(error)}
+}
+
+
 
 // Show and Hide Edit Form
 
@@ -53,6 +67,13 @@ const toggler = () => {
             {userId === id && 
                 <button onClick={toggler}>Edit</button>
             }
+            
+            {/* Shows if not current user */}
+            {!(userId === id) && 
+                <button onClick={handleFriendship}>Friend Request</button>
+            }
+            
+
         </div>
 
 
