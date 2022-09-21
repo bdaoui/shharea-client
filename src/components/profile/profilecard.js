@@ -45,10 +45,10 @@ const toggler = () => {
         
     
         <div>
-            <h1>Name: <span>{details.name}</span> </h1> 
-            <h2>Location: <span>{details.location}</span></h2>
+            <h1>Name: <span>{details?.name}</span> </h1> 
+            <h2>Location: <span>{details?.location}</span></h2>
             <h2>Info:</h2>
-            <p>{details.info}</p>
+            <p>{details?.info}</p>
 
             {userId === id && 
                 <button onClick={toggler}>Edit</button>
