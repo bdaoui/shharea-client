@@ -10,7 +10,7 @@ const Feed = () => {
 
 useEffect(() => {
    axios
-        .get('https://lazy-ruby-cocoon-wig.cyclic.app/home/images')
+        .get('http://localhost:5005/home/images')
         .then((res) => setImages(res.data))
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps

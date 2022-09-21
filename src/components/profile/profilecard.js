@@ -12,7 +12,7 @@ const [details, setDetails] = useState({})
 
 useEffect(()=>{
     axios
-    .get( `https://lazy-ruby-cocoon-wig.cyclic.app/user/${id}/details` )
+    .get( `http://localhost:5005/user/${id}/details` )
     .then(response => setDetails(response.data))
     .catch(err => console.log(err));
     // eslint-disable-next-line
@@ -24,7 +24,7 @@ useEffect(()=>{
 const handleProfile = (e) =>{
     e.preventDefault();
     axios
-        .post("https://lazy-ruby-cocoon-wig.cyclic.app/user/profile", {userId, location, info})
+        .post("http://localhost:5005/user/profile", {userId, location, info})
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
 }
