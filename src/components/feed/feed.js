@@ -39,7 +39,7 @@ useEffect(() => {
             <span>{item.tags}</span>
             <span>This image was posted by: 
             
-              <Link to={`/user/profile/${item?.owner?._id}`}>
+              <Link to={`/profile/${item?.owner?._id}`}>
                 {item?.owner?.username}
               </Link> 
             </span>
