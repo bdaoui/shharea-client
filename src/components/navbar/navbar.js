@@ -1,10 +1,12 @@
 import React, {useContext} from 'react';
-import {NavLink} from "react-router-dom"; 
+import {NavLink, useNavigate} from "react-router-dom"; 
 import {AuthContext} from '../../context/context';
 
+
 const NavBar = () => {
-const { logOutUser, user } = useContext(AuthContext);
-const id = user?._id;
+  const navigate = useNavigate()
+  const { logOutUser, user } = useContext(AuthContext);
+  const id = user?._id;
 
 // function refreshPage(){ 
 //   setTimeout( window?.location?.reload(), 5000); 
@@ -17,6 +19,7 @@ const id = user?._id;
           <li><NavLink to={"/home"} > Home</NavLink> </li>
           <li><NavLink to={`/profile/${id}`} > Profile</NavLink> </li>
           <li><NavLink to={"/login"}> Log In</NavLink> </li>
+          <li><button onClick={() => {navigate('/join')}}> Join Chat</button> </li>
           <li><button onClick={logOutUser}> Log Out</button> </li>
           
         </ul>

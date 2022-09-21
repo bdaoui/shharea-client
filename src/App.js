@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import ImagePage from './pages/ImagePage'
 import ProfilePage from "./pages/ProfilePage"
 import NavBar from './components/navbar/navbar';
+import Chat from './pages/chat/Chat';
+import JoinChat from './pages/chat/JoinChat';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
       {/* Can combine all 3 to Auth route @ / and use toggle */}
       <Route path="/home" element={<HomePage />} />
       <Route path="/home/image/:id" element={<ImagePage />} />
-      <Route path="/profile/:id" element={<ProfilePage />} /> 
+      <Route path="/profile/:id" element={<ProfilePage />} />
+      <Route path="/join" element={<JoinChat />} />
+      <Route path="/room/:id" element={<Chat />} /> 
 
     </Routes>
     </div>
