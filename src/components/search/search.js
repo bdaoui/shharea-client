@@ -30,10 +30,10 @@ useEffect(() => {
 const handleSearch = () => {
 
 }
-
-const images = data[0]
-const users = data[1]
-const comments = data[2]
+const fData = [...data]
+const images = fData[0]
+const users = fData[1]
+const comments = fData[2]
 
 let filteredImage = images?.filter((image) => { return image.name.toLowerCase().includes(query.toLowerCase())})
 let filteredUser = users?.filter((user) => { return user.name.toLowerCase().includes(query.toLowerCase()) || user.username.toLowerCase().includes(query.toLowerCase()) })
