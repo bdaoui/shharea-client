@@ -9,6 +9,8 @@ import ProfilePage from "./pages/ProfilePage"
 import NavBar from './components/navbar/navbar';
 import Chat from './pages/chat/Chat';
 import JoinChat from './pages/chat/JoinChat';
+import Result from './pages/Result';
+
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
       <Route path="/home/image/:id" element={<ImagePage />} />
       <Route path="/profile/:id" element={<ProfilePage />} />
       <Route path="/join" element={<JoinChat />} />
-      <Route path="/room/:id" element={<Chat />} /> 
+      <Route path="/room/:id" element={<Chat />} />
+      <Route path="/result" element={<Result />} />
+
 
     </Routes>
     </div>
