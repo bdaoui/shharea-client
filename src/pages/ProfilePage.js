@@ -14,11 +14,6 @@ const ProfilePage = () => {
         .catch(err => console.log(err));
     },[id])    
 
-
-
-  console.log(ownImages)
-
-
     return (
     
     <div>ProfilePage
