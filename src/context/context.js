@@ -14,7 +14,6 @@ const ApiContext = (props) => {
     const [user, setUser] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [images, setImages] = useState([]);
-    const [searchResult, setSearchResult] = useState([]);
     
 
     const setToken = (token) => {
@@ -60,7 +59,7 @@ const ApiContext = (props) => {
 
 
 return (
-    <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle, images, setImages, searchResult, setSearchResult}}>
+    <AuthContext.Provider value={{setToken, authenticateUser, logOutUser, user, isLoading, isLoggedIn, toggle, setToggle, images, setImages}}>
         {props.children}
     </AuthContext.Provider>
     )
