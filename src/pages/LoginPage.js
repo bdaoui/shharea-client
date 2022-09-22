@@ -16,7 +16,7 @@ const LoginPage = () => {
       const requestBody = { email, password };
     
       axios
-          .post(`https://lazy-ruby-cocoon-wig.cyclic.app/auth/login`, requestBody)
+          .post(`https://mittens-buffalo.cyclic.app/auth/login`, requestBody)
           .then((response) => {
             console.log("JWT token", response.data.authToken);
             setToken(response.data.authToken);

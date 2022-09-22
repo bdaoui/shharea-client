@@ -20,7 +20,7 @@ const Upload = () => {
     uploadData.append("tags", JSON.stringify(tagsArray));
     
     axios
-        .post('https://lazy-ruby-cocoon-wig.cyclic.app/home/upload', uploadData)
+        .post('https://mittens-buffalo.cyclic.app/home/upload', uploadData)
         .then((response) => console.log(response))
         .catch((err) => console.log("Error while uploading the file: ", err));
         navigate('/home')

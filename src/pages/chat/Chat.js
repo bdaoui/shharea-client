@@ -9,7 +9,7 @@ const {id} = useParams()
 useEffect(() => {
     const domain = 'https://shharea.daily.co/'
     axios
-        .get(`http://localhost:5005/chat/room/${id}`)
+        .get(`https://mittens-buffalo.cyclic.app/chat/room/${id}`)
         .then((res) => {
             if (res.status === 200){
                 const script = document.createElement("script");

@@ -9,7 +9,7 @@ const ProfilePage = () => {
  
     useEffect(() =>{
     axios
-        .get(`https://lazy-ruby-cocoon-wig.cyclic.app/user/profile/${id}`)
+        .get(`https://mittens-buffalo.cyclic.app/user/profile/${id}`)
         .then(response => setOwnImages(response.data))
         .catch(err => console.log(err));
     },[id])    

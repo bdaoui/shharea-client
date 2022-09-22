@@ -9,7 +9,7 @@ const { images, setImages } = useContext(AuthContext);
 
 useEffect(() => {
    axios
-        .get('https://lazy-ruby-cocoon-wig.cyclic.app/home/images')
+        .get('https://mittens-buffalo.cyclic.app/home/images')
         .then((res) => setImages(res.data))
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps

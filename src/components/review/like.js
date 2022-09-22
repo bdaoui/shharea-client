@@ -11,7 +11,7 @@ const Like = ({id}) => {
   const handleLike = (e) => {
     e.preventDefault();  
     axios
-        .post(`https://lazy-ruby-cocoon-wig.cyclic.app/home/image/like`, {userId, imageId})
+        .post(`https://mittens-buffalo.cyclic.app/home/image/like`, {userId, imageId})
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
   }

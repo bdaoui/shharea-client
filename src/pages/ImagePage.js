@@ -11,7 +11,7 @@ const ImagePage = () => {
 
     useEffect(() => {
         axios
-             .get(`https://lazy-ruby-cocoon-wig.cyclic.app/home/image/${id}`)
+             .get(`https://mittens-buffalo.cyclic.app/home/image/${id}`)
              .then((res) => {
                 console.log(res)
                 setImage(res.data)})
