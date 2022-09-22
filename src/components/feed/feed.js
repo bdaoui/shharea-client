@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom'
 import {AuthContext} from '../../context/context';
 
 const Feed = () => {
-    const { images, setImages } = useContext(AuthContext);
 
-
+const { images, setImages } = useContext(AuthContext);
 
 useEffect(() => {
    axios

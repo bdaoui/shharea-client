@@ -1,15 +1,39 @@
-import React from 'react'
-import DailyIframe from '@daily-co/daily-js';
+import React, {useEffect} from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Chat = () => {
 
-    let callFrame = DailyIframe.wrap();
+const {id} = useParams()
+    
+useEffect(() => {
+    const domain = 'https://shharea.daily.co/'
+    axios
+        .get(`http://localhost:5005/chat/room/${id}`)
+        .then((res) => {
+            if (res.status === 200){
+                const script = document.createElement("script");
+                script.innerHTML =  `window.DailyIframe.createFrame({
+                    iframeStyle: {
+                        position: 'fixed',
+                        top: 20,
+                        width: '100%',
+                        height: '80%',
+                    },
+                    showLeaveButton: true,
+                })
+                .join({
+                    url: '${domain}${id}',
+                });`;
+                document.body.appendChild(script);
+            }
+        })
+        .catch(err => console.log(err));
+}, [id]);
 
-    return (
-    <div>
-        <h1>Chat</h1>
-        {callFrame}
-    </div>
+  return (
+   <>
+   </>
   )
 }
 
