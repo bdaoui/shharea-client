@@ -13,7 +13,7 @@ const [friend, setFriend] = useState(false)
 
 useEffect(()=>{
     axios
-    .get( `http://localhost:5005/user/${id}/details` )
+    .get( `https://lazy-ruby-cocoon-wig.cyclic.app/user/${id}/details` )
     .then(response => setDetails(response.data))
     .catch(err => console.log(err));
     // eslint-disable-next-line
@@ -25,7 +25,7 @@ useEffect(()=>{
 const handleProfile = (e) =>{
     e.preventDefault();
     axios
-        .post("http://localhost:5005/user/profile", {userId, location, info})
+        .post("https://lazy-ruby-cocoon-wig.cyclic.app/user/profile", {userId, location, info})
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
 }
@@ -35,7 +35,7 @@ const handleProfile = (e) =>{
 const handleFriendship = async () => {
     await friend ? setFriend(false) : setFriend(true);
     try{
-       const friendsResponse = await axios.post(`http://localhost:5005/user/${id}/friends`, {userId})
+       const friendsResponse = await axios.post(`https://lazy-ruby-cocoon-wig.cyclic.app/user/${id}/friends`, {userId})
        console.log(friendsResponse);
     }
    catch(error) {console.log(error)}
