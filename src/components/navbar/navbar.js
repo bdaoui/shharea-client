@@ -21,7 +21,8 @@ const NavBar = () => {
           <li><NavLink to={`/profile/${id}`} > Profile</NavLink> </li>
           <li><NavLink to={"/login"}> Log In</NavLink> </li>
           <li><button onClick={() => {navigate('/join')}}> Join Chat</button> </li>
-          <li><Search /></li>
+          
+          <li><NavLink to={"/explore"}> Explore</NavLink> </li>
           <li><button onClick={logOutUser}> Log Out</button> </li>
           
         </ul>

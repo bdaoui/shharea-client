@@ -9,7 +9,7 @@ import ProfilePage from "./pages/ProfilePage"
 import NavBar from './components/navbar/navbar';
 import Chat from './pages/chat/Chat';
 import JoinChat from './pages/chat/JoinChat';
-import Result from './pages/Result';
+import Explore from './pages/Explore';
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Route path="/profile/:id" element={<ProfilePage />} />
       <Route path="/join" element={<JoinChat />} />
       <Route path="/room/:id" element={<Chat />} />
-      <Route path="/result" element={<Result />} />
+      <Route path="/explore" element={<Explore/>} />
 
 
     </Routes>
