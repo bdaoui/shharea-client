@@ -16,7 +16,7 @@ const LoginPage = () => {
       const requestBody = { email, password };
     
       axios
-          .post(`https://mittens-buffalo.cyclic.app/auth/login`, requestBody)
+          .post(`http://localhost:5005/auth/login`, requestBody)
           .then((response) => {
             console.log("JWT token", response.data.authToken);
             setToken(response.data.authToken);
