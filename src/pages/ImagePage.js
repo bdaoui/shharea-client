@@ -11,7 +11,7 @@ const ImagePage = () => {
 
     useEffect(() => {
         axios
-             .get(`http://localhost:5005/home/image/${id}`)
+             .get(`https://mittens-buffalo.cyclic.app/home/image/${id}`)
              .then((res) => {
                 setImage(res.data)})
              .catch((err) => console.log(err));

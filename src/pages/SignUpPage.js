@@ -3,17 +3,18 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import image from "../assets/profile.png";
+
 const SignUpPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [name, setName] = useState("");
-
-
+    
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post("http://localhost:5005/auth/signup", {email, password, username, name})
+        axios.post("https://mittens-buffalo.cyclic.app/auth/signup", {email, password, username, name, image})
             .then(response => console.log(response))
             .catch(err => console.log(err));
             navigate("/");

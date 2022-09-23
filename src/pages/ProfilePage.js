@@ -9,7 +9,7 @@ const ProfilePage = () => {
  
     useEffect(() =>{
     axios
-        .get(`http://localhost:5005/user/profile/${id}`)
+        .get(`https://mittens-buffalo.cyclic.app/user/profile/${id}`)
         .then(response => setOwnImages(response.data))
         .catch(err => console.log(err));
     },[id])    
