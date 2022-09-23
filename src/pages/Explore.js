@@ -6,9 +6,9 @@ const Explore = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
 
-  const one = "https://mittens-buffalo.cyclic.app/home/search/upload";
-  const two = "https://mittens-buffalo.cyclic.app/home/search/user";
-  const three = "https://mittens-buffalo.cyclic.app/home/search/comment";
+  const one = "http://localhost:5005/home/search/upload";
+  const two = "http://localhost:5005/home/search/user";
+  const three = "http://localhost:5005/home/search/comment";
   const requestOne = axios.get(one);
   const requestTwo = axios.get(two);
   const requestThree = axios.get(three);

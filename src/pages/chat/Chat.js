@@ -9,16 +9,17 @@ const {id} = useParams()
 useEffect(() => {
     const domain = 'https://shharea.daily.co/'
     axios
-        .get(`https://mittens-buffalo.cyclic.app/chat/room/${id}`)
+        .get(`http://localhost:5005/chat/room/${id}`)
         .then((res) => {
             if (res.status === 200){
                 const script = document.createElement("script");
                 script.innerHTML =  `window.DailyIframe.createFrame({
                     iframeStyle: {
-                        position: 'fixed',
-                        top: 20,
-                        width: '100%',
-                        height: '80%',
+                        position: 'absolute',
+                            width: '100vw',
+                            height: '100vh',
+                            border: '0',
+                            zIndex: "9999",
                     },
                     showLeaveButton: true,
                 })

@@ -14,7 +14,7 @@ const SignUpPage = () => {
     
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post("https://mittens-buffalo.cyclic.app/auth/signup", {email, password, username, name, image})
+        axios.post("http://localhost:5005/auth/signup", {email, password, username, name, image})
             .then(response => console.log(response))
             .catch(err => console.log(err));
             navigate("/");

@@ -21,7 +21,7 @@ const ProfileCard = ({ id }) => {
 
   useEffect(() => {
     axios
-      .get(`https://mittens-buffalo.cyclic.app/user/${id}/details`)
+      .get(`http://localhost:5005/user/${id}/details`)
       .then((response) => setDetails(response.data))
       .catch((err) => console.log(err));
     // eslint-disable-next-line
@@ -41,7 +41,7 @@ const ProfileCard = ({ id }) => {
     
 
     axios
-      .post("https://mittens-buffalo.cyclic.app/user/profile", updateProfile )
+      .post("http://localhost:5005/user/profile", updateProfile )
       .then((response) => console.log(response.data))
       .catch((err) => console.log(err));
   };
@@ -50,7 +50,7 @@ const ProfileCard = ({ id }) => {
     (await friend) ? setFriend(false) : setFriend(true);
     try {
       const friendsResponse = await axios.post(
-        `https://mittens-buffalo.cyclic.app/user/${id}/friends`,
+        `http://localhost:5005/user/${id}/friends`,
         { userId }
       );
       console.log(friendsResponse);

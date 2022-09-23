@@ -18,7 +18,7 @@ const Comment = ({id}) => {
         // uploadData.append("owner", owner)
         // uploadData.append("id", imageId)
         axios
-            .post(`https://mittens-buffalo.cyclic.app/home/image/comment`, {comment, imageId, owner})
+            .post(`http://localhost:5005/home/image/comment`, {comment, imageId, owner})
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
     }
