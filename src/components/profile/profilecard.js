@@ -4,33 +4,44 @@ import axios from "axios";
 
 const ProfileCard = ({ id }) => {
   const { user, toggle, setToggle } = useContext(AuthContext);
-  
   const userId = user?._id;
+  const userEmail = user?.email;
+  const userUserName = user?.username;
+  const userInfo = user?.info;
+  const userLocation = user?.location;
+
   const [details, setDetails] = useState({});
+  const [email, setEmail] = useState(userEmail);
+  const [username, setUsername] = useState(userUserName);
+  const [info, setInfo] = useState(userInfo);
+  const [location, setLocation] = useState(userLocation);
+
   const [friend, setFriend] = useState(false);
-  
-  const [email, setEmail] = useState(user?.email);
-  const [username, setUsername] = useState(user?.username);
-  const [info, setInfo] = useState(user?.info);
-  const [location, setLocation] = useState(user?.location);
+
 
   useEffect(() => {
     axios
       .get(`http://localhost:5005/user/${id}/details`)
       .then((response) => setDetails(response.data))
       .catch((err) => console.log(err));
-
     // eslint-disable-next-line
   }, []);
 
   const handleProfile =  (e) => {
     e.preventDefault();
 
+     const updateProfile = new FormData();
+        updateProfile.append("image", (e.target.image.files[0]?e.target.image.files[0]: details?.image ) );
+        updateProfile.append("username", (username? username : details?.username) );
+        updateProfile.append("userId", userId);
+        updateProfile.append("location", (location? location : details?.location));
+        updateProfile.append("info", (info? info : details?.info));
+        updateProfile.append("email", (email? email : details?.email));
+
     
-    console.log("info ", info, "location ", location)    
 
     axios
-      .post("http://localhost:5005/user/profile", { userId, location, info, email, username })
+      .post("http://localhost:5005/user/profile", updateProfile )
       .then((response) => console.log(response.data))
       .catch((err) => console.log(err));
   };
@@ -59,10 +70,11 @@ const ProfileCard = ({ id }) => {
   };
 
 
-
   return (
     <div>
       <div>
+        <img src={details?.image} alt={details?.name} style={{height: "100px", width: "100px", borderRadius:"10px" }}/>
+
         <h1>
           Name: <span>{details?.name}</span>{" "}
         </h1>
@@ -86,6 +98,28 @@ const ProfileCard = ({ id }) => {
         <>
           <form onSubmit={handleProfile}>
             <div>
+              <label for="image">Profile Picture</label>
+              <input type="file" name="image"/>
+            </div> 
+            <div>
+              <label for="username">username</label>
+              <input
+                type="text"
+                placeholder={details.username}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </div> 
+            <div>
+              <label for="email">email</label>
+              <input
+                type="text"
+                placeholder={details.email}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </div> 
+            <div>
               <label for="location">Location</label>
               <input
                 type="text"
@@ -105,24 +139,6 @@ const ProfileCard = ({ id }) => {
               />
             </div>
 
-            <div>
-              <label for="username">username</label>
-              <input
-                type="text"
-                placeholder={details.username}
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-              />
-            </div> 
-            <div>
-              <label for="email">email</label>
-              <input
-                type="text"
-                placeholder={details.email}
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </div> 
 
             <div>
               <button type="submit">Update profile</button>
