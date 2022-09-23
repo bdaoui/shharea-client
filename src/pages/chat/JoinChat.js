@@ -6,7 +6,7 @@ const [room, setRoom] = useState(null);
 
 const handleJoin = (e) => {
     e.preventDefault();
-    window.location.assign(`/room/${room}`)
+    window.open(`/room/${room}`)
 }
 
     return (

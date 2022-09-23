@@ -15,10 +15,11 @@ useEffect(() => {
                 const script = document.createElement("script");
                 script.innerHTML =  `window.DailyIframe.createFrame({
                     iframeStyle: {
-                        position: 'fixed',
-                        top: 20,
-                        width: '100%',
-                        height: '80%',
+                        position: 'absolute',
+                            width: '100vw',
+                            height: '100vh',
+                            border: '0',
+                            zIndex: "9999",
                     },
                     showLeaveButton: true,
                 })
