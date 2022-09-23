@@ -5,14 +5,35 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApiContext } from "./context/context";
+import { ThemeProvider, createTheme } from '@mui/material'
 
+const theme = createTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#0CD3FC',
+    },
+    secondary: {
+      main: '#F06FCB',
+    },
+    error: {
+      main: '#A495D8',
+    },
+    background: {
+      default: '#5c5757',
+      paper: '#292626',
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <ApiContext>
-      <App />
-    </ApiContext>
+    <ThemeProvider theme={theme}>
+      <ApiContext>
+        <App />
+      </ApiContext>
+    </ ThemeProvider>
   </Router>
 );
 

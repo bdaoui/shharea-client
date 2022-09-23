@@ -17,9 +17,7 @@ useEffect(() => {
                     iframeStyle: {
                         position: 'absolute',
                             width: '100vw',
-                            height: '100vh',
-                            border: '0',
-                            zIndex: "9999",
+                            height: '100vh'
                     },
                     showLeaveButton: true,
                 })
