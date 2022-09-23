@@ -15,9 +15,6 @@ const ProfileCard = ({ id }) => {
   const [username, setUsername] = useState(userUserName);
   const [info, setInfo] = useState(userInfo);
   const [location, setLocation] = useState(userLocation);
-  
-  const [imagePreview, setImagePreview] = useState(null);
-  const [image, setImage] = useState(user?.image);
 
   const [friend, setFriend] = useState(false);
 
@@ -42,8 +39,6 @@ const ProfileCard = ({ id }) => {
         updateProfile.append("email", (email? email : details?.email));
 
     
-
-    console.log(...updateProfile)
 
     axios
       .post("https://mittens-buffalo.cyclic.app/user/profile", updateProfile )
