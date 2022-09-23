@@ -8,19 +8,15 @@ const NavBar = () => {
   const { logOutUser, user } = useContext(AuthContext);
   const id = user?._id;
 
-// function refreshPage(){ 
-//   setTimeout( window?.location?.reload(), 5000); 
-// }onClick={() => refreshPage()}
-  
+
   return (
   
-    <nav>
+    <nav >
         <ul>
           <li><NavLink to={"/home"} > Home</NavLink> </li>
           <li><NavLink to={`/profile/${id}`} > Profile</NavLink> </li>
           <li><NavLink to={"/login"}> Log In</NavLink> </li>
           <li><button onClick={() => {navigate('/join')}}> Join Chat</button> </li>
-          
           <li><NavLink to={"/explore"}> Explore</NavLink> </li>
           <li><button onClick={logOutUser}> Log Out</button> </li>
           
