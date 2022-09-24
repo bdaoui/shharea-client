@@ -21,23 +21,23 @@ export const theme = createTheme ({
           secondary: 'rgba(84,84,84,0.7)',
         },
 
-        type: 'light',
-        primary: {
-          main: '#0CD3FC',
-        },
-        secondary: {
-          main: '#F06FCB',
-        },
-        error: {
-          main: '#A495D8',
-        },
-        background: {
-          default: '#9a9a9a',
-          paper: '#ffffff',
-        },
-        text: {
-          primary: '#000000',
-          secondary: 'rgba(84,84,84,0.7)',
-        },
+        // type: 'light',
+        // primary: {
+        //   main: '#0CD3FC',
+        // },
+        // secondary: {
+        //   main: '#F06FCB',
+        // },
+        // error: {
+        //   main: '#A495D8',
+        // },
+        // background: {
+        //   default: '#9a9a9a',
+        //   paper: '#ffffff',
+        // },
+        // text: {
+        //   primary: '#000000',
+        //   secondary: 'rgba(84,84,84,0.7)',
+        // },
     },  
 });
