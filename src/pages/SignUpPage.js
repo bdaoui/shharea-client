@@ -5,17 +5,19 @@ import { useNavigate } from "react-router-dom";
 
 import image from "../assets/profile.png";
 
-const SignUpPage = () => {
+const SignUpPage = ({toggler}) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [name, setName] = useState("");
     
+ 
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         axios.post("http://localhost:5005/auth/signup", {email, password, username, name, image})
-            .then(response => console.log(response))
+            .then(response => console.log( response.data.message))
             .catch(err => console.log(err));
             navigate("/");
     }
@@ -60,7 +62,7 @@ const SignUpPage = () => {
                             placeholder='Enter your email'
                             onChange={(e) => setEmail(e.target.value)} value={email}
                             />
-                        <p >We'll never share your email with anyone else. </p>
+
                     </div>
 
                     <div>
@@ -72,8 +74,10 @@ const SignUpPage = () => {
                             placeholder='Enter your password'
                             onChange={(e) => setPassword(e.target.value)} value={password}
                             />
+                           
+                           
                     </div>
-
+                    
                     <div >
                         <button type="submit">
                             JOIN SHH-AREA
@@ -81,6 +85,12 @@ const SignUpPage = () => {
                     </div>                
 
                 </form>
+
+                <div>
+                        <button onClick={toggler}>
+                            Have an account?
+                        </button>
+                    </div>    
             </div>
         </div>
 );

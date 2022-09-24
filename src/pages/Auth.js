@@ -1,12 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react'
+import LoginPage from './LoginPage'
+import SignUpPage from './SignUpPage'
+
 
 const Auth = () => {
+  const [toggle, setToggle] = useState(false)
+
+
+  const toggler = () => {
+    if (toggle === false) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  };
+
   return (
     <div>
-        <Link to ="/signup">Signup</Link>
-        <Link to ="/login">Login</Link>
 
+{toggle && 
+        <SignUpPage toggler={toggler}/>
+}
+
+{!toggle && 
+        <LoginPage toggler={toggler} />
+ }
     </div>
   )
 }

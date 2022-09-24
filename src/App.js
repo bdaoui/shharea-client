@@ -18,8 +18,6 @@ function App() {
     <Routes>
       <Route element={<OutletComponent />} >
         <Route path="/" element={<Auth />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LoginPage />} />
         {/* Can combine all 3 to Auth route @ / and use toggle */}
         <Route path="/home" element={<HomePage />} />
         <Route path="/home/image/:id" element={<ImagePage />} />
