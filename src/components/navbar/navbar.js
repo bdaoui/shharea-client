@@ -123,7 +123,7 @@ useEffect(() => {
             }}
           >
               <MenuItem onClick={handleCloseNavMenu}>
-                 <Link to='login'  style={{ textDecoration: 'none', color:'white' }}><Typography textAlign="center">Login</Typography></Link>
+                 <Link to='/'  style={{ textDecoration: 'none', color:'white' }}><Typography textAlign="center">Login</Typography></Link>
                 </MenuItem> 
                 <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='explore'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Explore</Typography></Link>
@@ -160,7 +160,7 @@ useEffect(() => {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-            <Link to='login'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Login</Typography></Link>
+            <Link to='/'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Login</Typography></Link>
             </Button>
             <Button
               onClick={handleCloseNavMenu}

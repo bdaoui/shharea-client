@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from '../context/context';
 
-const LoginPage = () => {
+const LoginPage = ({toggler}) => {
   const navigate = useNavigate();
   
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ const LoginPage = () => {
             <div>
 
                 <h1>
-                    Create an account
+                    Login
                 </h1>
 
                 <form onSubmit={handleLoginSubmit}>
@@ -47,7 +47,6 @@ const LoginPage = () => {
                             placeholder='Enter your email'
                             onChange={(e) => setEmail(e.target.value)} value={email}
                             />
-                        <p>We'll never share your email with anyone else. </p>
                     </div>
 
                     <div>
@@ -63,11 +62,20 @@ const LoginPage = () => {
 
                     <div>
                         <button type="submit">
-                            JOIN SHH-AREA
+                            ENTER SHH-AREA
                         </button>
-                    </div>                
-
+                    </div> 
                 </form>
+<br></br>
+<br></br>
+
+                    <div>
+                        <button onClick={toggler}>
+                            Need an account?
+                        </button>
+                    </div>               
+
+               
             </div>
         </div>
   )
