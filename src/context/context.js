@@ -50,7 +50,7 @@ const ApiContext = (props) => {
     const logOutUser = () => {
         removeToken();
         authenticateUser();
-        navigate('/login');
+        navigate('/');
     };
       
       useEffect(() => { 
