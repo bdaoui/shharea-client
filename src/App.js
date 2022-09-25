@@ -10,6 +10,7 @@ import Chat from './pages/chat/Chat';
 import JoinChat from './pages/chat/JoinChat';
 import Explore from './pages/Explore';
 import OutletComponent from './context/outlet';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -23,11 +24,12 @@ function App() {
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/explore" element={<Explore/>} />
         <Route path="/join" element={<JoinChat />} />
-
+        
 
       </Route>
       
       <Route path="/room/:id" element={<Chat />} />
+      <Route path="" element={<Error />} />
 
 
     </Routes>
