@@ -5,11 +5,14 @@ import Comment from "../components/review/comment";
 import Like from "../components/review/like";
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import CommentIcon from '@mui/icons-material/Comment';
 
 
 const ImagePage = () => {
   const { id } = useParams();
   const [image, setImage] = useState({});
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     axios
@@ -20,6 +23,10 @@ const ImagePage = () => {
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const toggler= () =>{
+    setToggle(!toggle)
+  }
 
   return (
 
@@ -50,7 +57,9 @@ const ImagePage = () => {
             width: "100%",
         }}
         />
-
+        <FavoriteIcon style={{position:"relative", top:"-10%", left:"43%"}} onClick={toggler} 
+        /> 
+        <CommentIcon style={{position:"relative", top:"-10%", left:"45%"}} /> 
       </Grid>
 
 
