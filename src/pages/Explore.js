@@ -55,7 +55,7 @@ const Explore = () => {
   <Input sx={{ mt: 3, mb: 3 }} color="primary" label="Search" id="input-with-icon-adornment" onChange={(e) => setQuery(e.target.value)} value={query}
   startAdornment={ <InputAdornment position="start"> <PageviewIcon fontSize='large' color="primary" /> </InputAdornment>} />
 
-  <ImageList xs={12} md={7} lg={7} sx={{ width: '100vh', height: '65vw' }} variant="masonry" cols={3} gap={2} >
+  <ImageList xs={12} md={7} lg={7} sx={{ width: '65%', height: '100%' }} variant="masonry" cols={3} gap={2} >
     {filteredImage?.map((item) => (
     <ImageListItem key={item._id}>
       <img src={`${item.imageUrl}?w=251&fit=crop&auto=format`} srcSet={`${item.imageUrl}?w=251&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy"/>
@@ -67,10 +67,10 @@ const Explore = () => {
     </ImageListItem>))}
   </ImageList>
 
-  <ImageList xs={12} md={5} lg={5} sx={{ width: '100vh', height: '35vw' }} variant="masonry" cols={2} gap={1} >
+  <ImageList xs={12} md={12} lg={12} sx={{ width: '35%', height: '100%' }} variant="masonry" cols={2} gap={1} >
     {filteredUser?.map((item) => (
     <ImageListItem key={item._id}>
-      <img src={`${item.image}?w=100&fit=crop&auto=format`} srcSet={`${item.image}?w=100&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy"/>
+      <img src={`${item.image}?w=50&fit=crop&auto=format`} srcSet={`${item.image}?w=50&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy"/>
         <Link href={`/profile/${item?._id}`}>
         <ImageListItemBar title={item?.name} subtitle={`@${item?.username}`} actionIcon={
           <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} aria-label={`info about ${item.name}`}>
