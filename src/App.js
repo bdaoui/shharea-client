@@ -10,8 +10,8 @@ import Chat from './pages/chat/Chat';
 import JoinChat from './pages/chat/JoinChat';
 import Explore from './pages/Explore';
 import OutletComponent from './context/outlet';
-import Error404
- from './pages/Error404';
+import Error from './pages/Error';
+
 function App() {
   return (
     <div className="App">
@@ -24,12 +24,12 @@ function App() {
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/explore" element={<Explore/>} />
         <Route path="/join" element={<JoinChat />} />
-
+        
 
       </Route>
       
       <Route path="/room/:id" element={<Chat />} />
-      <Route path="*" element={<Error404 />} />
+      <Route path="" element={<Error />} />
 
 
     </Routes>

@@ -1,19 +1,21 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import axios from 'axios'
-// import {Link} from 'react-router-dom'
 import {AuthContext} from '../../context/context';
-import Masonry from '@mui/lab/Masonry';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link'; 
-import Grid from '@mui/material/Grid';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { findByLabelText } from '@testing-library/react';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import CommentIcon from '@mui/icons-material/Comment';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {theme} from '../../index'
 
 const Feed = () => {
-const [checkHover, setcheckHover] = useState(false);
-const [target, setTarget] = useState("");
 
 const { images, setImages } = useContext(AuthContext);
+
 
 useEffect(() => {
    axios
@@ -23,100 +25,32 @@ useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
-const handleHover = (id) =>{
-  setTarget(id)
 
-  return setcheckHover (true);
-}
-
+const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
 
   return (
     <div>
-    {images && 
 
-      <Masonry columns={{ xs:1, sm: 2, md:4 }} spacing={1} sx={{ px: 4 }}>
-        {images.map((item, index) => (
-          <div key={item._id} >
-          
-          <Link href={`/home/image/${item._id}`} underline="none" >
-          <img
-              src={`${item.imageUrl}?w=162&auto=format`}
-              srcSet={`${item.imageUrl}?w=162&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                display: 'block',
-                width:'100%'
-
-              }}
-              onMouseOver={() => handleHover(item._id)}
-              onMouseOut={()=> setcheckHover(false)}
-
-            />  
-
-
-            
-           {target === item._id && checkHover?
-          <div style={{ 
-            position: "relative", top: "-5vh", width: "100%" 
-          
-          }}>
-          <Typography variant="caption" color="secondary" style={{ position: "absolute", backgroundColor: 'rgba(0, 0, 0, 0.5)', backgroundBlendMode: 'darken'}}>
-                  {target === item._id && checkHover? item.tags : null}      
-          </Typography>    
-  
-          </div>
-
-          : null}
-
-
-
-
-
-         </Link>
-
+{images && 
        
-
-         {/* <Typography variant="h5" color="primary" style={{ position: "relative", top: "-8vh", right: "12vw", display: "fixed"}}> 
-                  {
-                    item.name 
-                  }
-
-                  <Typography variant="caption" color="secondary" sx={{}}>
-                  {target === item._id && checkHover? item.tags : null}      
-                  </Typography>  
-
-          </Typography> */}
-
-    
-
-            <Grid container  >
-              <Grid item xs={12}>
-                <Typography variant="h8" color="primary" >
-                  {item.name}
-                </Typography>
-              
-              </Grid>
-
-            </Grid>
+  <ImageList sx={{ width: '98%', height: '100%', margin:'auto' }} variant="masonry" cols={breakpoint ? 1 : 4 } gap={2} >
+    {images?.map((item) => (
+    <ImageListItem key={item._id}>
+      <img src={`${item.imageUrl}?w=500&fit=crop&auto=format`} srcSet={`${item.imageUrl}?w=500&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy" />
+        <Link href={`/home/image/${item._id}`}>
+        <ImageListItemBar title={item?.name} subtitle={`Posted by @${item?.owner?.username}`} actionIcon={
+          <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} aria-label={`info about ${item.name}`}>
             
-            {/* <Typography variant="caption" gutterBottom>
-              This image was posted by:   
+            <FavoriteIcon sx={{mr:1}} /> 
+            <CommentIcon />
             
-              <Link to={`/profile/${item?.owner?._id}`} >
-                {" " +item?.owner?.username}      
-              </Link>
-            </Typography> */}
-
-          </div>
-        ))}
-      </Masonry>
-}
-
+          </IconButton>}/></Link>
+    </ImageListItem>))}
+  </ImageList>
+  }
     </div>
   )
 }
 
 export default Feed
+

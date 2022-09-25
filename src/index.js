@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ApiContext } from "./context/context";
 import { ThemeProvider, createTheme, CssBaseline   } from '@mui/material';
 
-const theme = createTheme ({
+export const theme = createTheme ({
     palette: {
         background: {
           default: '#4c4a4a',
