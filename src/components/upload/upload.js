@@ -9,6 +9,7 @@ const Upload = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [tags, setTags] = useState([]);
+    const userId=user?._id
 
     const handleUpload = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const Upload = () => {
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.image.files[0]);
     uploadData.append("name", name);
-    uploadData.append("owner", user._id );
+    uploadData.append("owner", userId );
     uploadData.append("tags", JSON.stringify(tagsArray));
     
     axios
