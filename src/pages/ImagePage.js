@@ -22,7 +22,7 @@ const ImagePage = () => {
 
   return (
     <div>
-        ImagePage
+
 
         {image && 
           

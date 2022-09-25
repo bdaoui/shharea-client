@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -70,10 +69,3 @@ const handleJoin = (e) => {
 }
 
 export default JoinChat
-
-{/* <div>
-        <span>Chat Rooms</span>
-        <p>Enter the room you want to join</p>
-        <input name="room" label="room" onChange={(e) => setRoom(e.target.value)} /> 
-        <button onClick={handleJoin}>Join Room</button>
-    </div> */}
