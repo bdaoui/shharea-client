@@ -91,9 +91,9 @@ const ImagePage = () => {
       </Grid>
     
     {/* Last Section */}
+      {comments && <Comment id={id} /> }
 
       <Grid item md={12}>
-        {comments && <Comment id={id} /> }
         {like && <Like id={id} /> } 
       </Grid>
 
