@@ -8,7 +8,7 @@ import {Box, TextField} from '@mui/material'
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const Upload = () => {
     const { user } = useContext(AuthContext);
@@ -98,6 +98,10 @@ const Upload = () => {
     UPLOAD TO SHH-AREA
     <button type="submit" hidden></button>
     </Button>
+
+
+    <RemoveCircleIcon  onClick={toggler} sx={{mt:5, mb:5}} color="secondary" /> 
+
     </ form>
 </>
   }   
