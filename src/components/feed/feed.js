@@ -54,27 +54,3 @@ const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
 
 export default Feed
 
-// images.map((item) => {
-        //   return (
-        //   <div key={item._id}>
-        //     <img
-        //       src={item.imageUrl}
-        //       alt={item.name}
-        //       loading="lazy"
-        //       style={{
-        //         display: 'block',
-        //         width: '25%',
-        //       }}
-        //     />
-        //     <Link to={`/home/image/${item._id}`}>{item.name}</Link>
-        //     <span>{item.tags}</span>
-        //     <span>This image was posted by: 
-            
-        //       <Link to={`/profile/${item?.owner?._id}`}>
-        //         {item?.owner?.username}
-        //       </Link> 
-        //     </span>
-          
-        //   {/* get profile by id */}
-        //   </div>
-        // )})}

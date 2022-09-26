@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, {useState, useContext} from 'react'
 
 import {AuthContext} from '../../context/context';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 
 const Comment = ({id}) => {
@@ -24,21 +26,27 @@ const Comment = ({id}) => {
     }
 
   return (
-    <div>
-        Comment:
+    <Grid container spacing={3}>
+        <Grid item md={2}>
+            <Typography variant='h5' align="center" >
+                Comment:
+            </Typography>
+        </Grid>
+        <Grid item md={4}>
+            <form onSubmit={handleComment}>
+                <div >
+                    <label for="comment">
+                        <textarea type="text" placeholder='Now that is magic' onChange={(e) => setComment(e.target.value)} value={comment} style={{margin: "0px", padding: "0px", width: "100%"}}/>
+                    </label>
+                </div>           
+            </form>
 
-        <form onSubmit={handleComment}>
-            <div >
-                <label for="comment">
-                    Comment goes here: 
-                </label>
-                <textarea type="text" placeholder='Now that is magic' onChange={(e) => setComment(e.target.value)} value={comment}/>
-            </div>           
+        </Grid>
+        <Grid item md={1}>
             <button type="submit">Comment!!!</button>
-        </form>
+        </Grid>
 
-
-    </div>
+    </Grid>
   )
 }
 
