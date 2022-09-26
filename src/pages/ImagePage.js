@@ -12,7 +12,10 @@ import CommentIcon from '@mui/icons-material/Comment';
 const ImagePage = () => {
   const { id } = useParams();
   const [image, setImage] = useState({});
-  const [toggle, setToggle] = useState(false);
+
+  const [like, setLike] = useState(false);
+  const [comments, setComments] = useState(false);
+  
 
   useEffect(() => {
     axios
@@ -24,9 +27,6 @@ const ImagePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const toggler= () =>{
-    setToggle(!toggle)
-  }
 
   return (
 
@@ -57,9 +57,18 @@ const ImagePage = () => {
             width: "100%",
         }}
         />
-        <FavoriteIcon style={{position:"relative", top:"-10%", left:"43%"}} onClick={toggler} 
-        /> 
-        <CommentIcon style={{position:"relative", top:"-10%", left:"45%"}} /> 
+
+
+        <div onClick={() => setLike(!like)} style={{position:"relative", top:"-13%", left:"46%"}}>
+          <FavoriteIcon  /> 
+        </div>
+ 
+
+        <div onClick={() => setComments(!comments)} style={{position:"relative", top:"-13%", left:"46%"}}> 
+          <CommentIcon  /> 
+        </div>
+
+
       </Grid>
 
 
@@ -82,8 +91,8 @@ const ImagePage = () => {
     {/* Last Section */}
 
       <Grid item md={12}>
-        <Comment id={id} />
-        <Like id={id} /> 
+        {comments && <Comment id={id} /> }
+        {like && <Like id={id} /> } 
       </Grid>
   
       {/* {image && (
