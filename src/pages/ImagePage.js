@@ -59,13 +59,15 @@ const ImagePage = () => {
         />
 
 
-        <div onClick={() => setLike(!like)} style={{position:"relative", top:"-13%", left:"46%"}}>
+        <div onClick={() => setLike(!like)} style={{position:"relative", top:"-15%", display: "flex", alignItems: "center", justifyContent:"flex-end", margin:"10px", padding:"1px"}}>
           <FavoriteIcon  /> 
+          {image?.likes?.length} 
         </div>
  
 
-        <div onClick={() => setComments(!comments)} style={{position:"relative", top:"-13%", left:"46%"}}> 
+        <div onClick={() => setComments(!comments)} style={{position:"relative", top:"-15%", display: "flex", alignItems: "center", justifyContent:"flex-end", margin:"10px"}}> 
           <CommentIcon  /> 
+          {image?.comments?.length} 
         </div>
 
 
@@ -94,39 +96,6 @@ const ImagePage = () => {
         {comments && <Comment id={id} /> }
         {like && <Like id={id} /> } 
       </Grid>
-  
-      {/* {image && (
-        <Grid>
-          <Grid item >
-          <img
-            src={image.imageUrl}
-            alt={image.name}
-            loading="lazy"
-            style={{
-              display: "block",
-              width: "25%",
-            }}
-          />
-          <h2>{image.name}</h2>
-          <span>{image.tags}</span>
-          <span>This image was posted by: {image?.owner?.username}</span>
-          {image?.comments?.map((comment) => (
-            <h3 key={comment?._id}>
-              <span>{comment?.owner?.username} posted: </span>{" "}
-              {comment?.comment}
-            </h3>
-          ))}
-
-          {image?.likes?.map((like) => (
-            <h3 key={like?._id}>{like?.username} liked this</h3>
-          ))}
-
-          <h1>This images has {image?.likes?.length} likes</h1>
-        </Grid>
-      )}
-
-      <Comment id={id} />
-      <Like id={id} /> */}
 
     </Grid>
   )
