@@ -3,8 +3,8 @@ import React, {useState, useContext} from 'react'
 
 import {AuthContext} from '../../context/context';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const Comment = ({id}) => {
     const [comment, setComment] = useState("");
@@ -21,29 +21,43 @@ const Comment = ({id}) => {
         // uploadData.append("id", imageId)
         axios
             .post(`http://localhost:5005/home/image/comment`, {comment, imageId, owner})
-            .then((res) => console.log(res))
+            .then((res) => {
+                setTimeout(window.location.reload(), 1500)
+                console.log(res)})
             .catch((err) => console.log(err))
     }
 
   return (
     <Grid container spacing={3}>
-        <Grid item md={2}>
-            <Typography variant='h5' align="center" >
-                Comment:
-            </Typography>
-        </Grid>
-        <Grid item md={4}>
+        <Grid item md={6} align="center">
             <form onSubmit={handleComment}>
                 <div >
-                    <label for="comment">
-                        <textarea type="text" placeholder='Now that is magic' onChange={(e) => setComment(e.target.value)} value={comment} style={{margin: "0px", padding: "0px", width: "100%"}}/>
-                    </label>
-                </div>           
+                <TextField
+                        type="name"
+                        margin="normal"
+                        required
+                        id="comment"
+                        label="Comment"
+                        name="comment"
+                        autoComplete="comment"
+                        autoFocus
+                        onChange={(e) => setComment(e.target.value)} 
+                        value={comment}
+                        style={{width:'80%'}}
+                        sx={{pl:10}}
+                        variant="filled"
+                        color="secondary"
+                    /> 
+                 
+
+                <Button variant="contained" component="label" color="primary">
+                COMMENT!
+                <button type="submit" hidden></button>
+                </Button>
+            </div>
+
             </form>
 
-        </Grid>
-        <Grid item md={1}>
-            <button type="submit">Comment!!!</button>
         </Grid>
 
     </Grid>
