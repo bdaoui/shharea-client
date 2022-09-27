@@ -50,7 +50,7 @@ useEffect(() => {
     .get(`http://localhost:5005/user/${id}/details`, {headers: {Authorization: `Bearer ${storeToken}`}})
     .then((response) => setDetails(response.data))
     .catch((err) => console.log(err));
-  // eslint-disable-next-line
+    // eslint-disable-next-line
 }, [user]);
 
 
