@@ -28,10 +28,10 @@ const Comment = ({id}) => {
     }
 
   return (
-    <Grid container spacing={3}>
-        <Grid item md={6} align="center">
-            <form onSubmit={handleComment}>
-                <div >
+
+    <Grid container spacing={2} style={{position:"relative", top:"-9%"}}>
+
+            <form onSubmit={handleComment} style={{position:"relative", alignItems: "center", justifyContent:"center", margin:"10px", padding:"1px", width: "100%"}}>
                 <TextField
                         type="name"
                         margin="normal"
@@ -43,7 +43,7 @@ const Comment = ({id}) => {
                         autoFocus
                         onChange={(e) => setComment(e.target.value)} 
                         value={comment}
-                        style={{width:'80%'}}
+                        style={{width:'100%'}}
                         sx={{pl:10}}
                         variant="filled"
                         color="secondary"
@@ -54,14 +54,11 @@ const Comment = ({id}) => {
                 COMMENT!
                 <button type="submit" hidden></button>
                 </Button>
-            </div>
 
             </form>
-
-        </Grid>
-
     </Grid>
-  )
+
+    )
 }
 
 export default Comment

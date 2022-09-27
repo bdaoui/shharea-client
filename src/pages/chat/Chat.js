@@ -7,9 +7,10 @@ const Chat = () => {
 const {id} = useParams()
     
 useEffect(() => {
+    const storeToken = localStorage.getItem('authToken');
     const domain = 'https://shharea.daily.co/'
     axios
-        .get(`http://localhost:5005/chat/room/${id}`)
+        .get(`http://localhost:5005/chat/room/${id}`, {headers: {Authorization: `Bearer ${storeToken}`}} )
         .then((res) => {
             if (res.status === 200){
                 const script = document.createElement("script");

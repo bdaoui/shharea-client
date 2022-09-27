@@ -8,8 +8,10 @@ const ProfilePage = () => {
     const [ownImages, setOwnImages] = useState([]);
  
     useEffect(() =>{
+      const storeToken = localStorage.getItem('authToken');
+
     axios
-        .get(`http://localhost:5005/user/profile/${id}`)
+        .get(`http://localhost:5005/user/profile/${id}`, {headers: {Authorization: `Bearer ${storeToken}`}})
         .then(response => setOwnImages(response.data))
         .catch(err => console.log(err));
     },[id])    

@@ -22,8 +22,10 @@ const ImagePage = () => {
   const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
 
   useEffect(() => {
+    const storeToken = localStorage.getItem('authToken');
+
     axios
-      .get(`http://localhost:5005/home/image/${id}`)
+      .get(`http://localhost:5005/home/image/${id}`, {headers: {Authorization: `Bearer ${storeToken}`}})
       .then((res) => {
         setImage(res.data)
       })
@@ -85,6 +87,8 @@ const ImagePage = () => {
           {image?.comments?.length} 
         </div>
 
+        {comments && <Comment id={id} /> }
+
 
       </Grid>
 
@@ -105,8 +109,7 @@ const ImagePage = () => {
         }
       </Grid>
     
-      {comments && <Comment id={id} /> }
-
+     
    
     </Grid>
   )
