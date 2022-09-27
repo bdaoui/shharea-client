@@ -6,7 +6,6 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -18,8 +17,10 @@ const { images, setImages } = useContext(AuthContext);
 
 
 useEffect(() => {
+  const storeToken = localStorage.getItem('authToken');
+
    axios
-        .get('http://localhost:5005/home/images')
+        .get('http://localhost:5005/home/images', {headers: {Authorization: `Bearer ${storeToken}`}} )
         .then((res) => setImages(res.data))
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps

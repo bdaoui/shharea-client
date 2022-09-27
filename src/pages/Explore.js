@@ -12,13 +12,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 
 const Explore = () => {
+  const storeToken = localStorage.getItem('authToken');
+
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
 
   const one = "http://localhost:5005/home/search/upload";
   const two = "http://localhost:5005/home/search/user";
-  const requestOne = axios.get(one);
-  const requestTwo = axios.get(two);
+  const requestOne = axios.get(one, {headers: {Authorization: `Bearer ${storeToken}`}});
+  const requestTwo = axios.get(two, {headers: {Authorization: `Bearer ${storeToken}`}});
  
   useEffect(() => {
     axios

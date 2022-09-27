@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../../context/context';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-import {Box, TextField} from '@mui/material'
+import {TextField} from '@mui/material'
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const Upload = () => {
     const { user } = useContext(AuthContext);
@@ -94,11 +94,15 @@ const Upload = () => {
             color="secondary"
           />
    
-   <Button variant="contained" component="label" color="primary" sx={{p:0.5, pt:0, pb:0, mb:10}}>
-    UPLOAD TO SHH-AREA
-    <button type="submit" hidden></button>
-    </Button>
-    </ form>
+        <Button variant="contained" component="label" color="primary" sx={{p:0.5, pt:0, pb:0, m:3}}>
+          UPLOAD TO SHH-AREA
+          <button type="submit" hidden></button>
+        </Button>
+
+
+        <RemoveCircleIcon  onClick={toggler} sx={{mb:5}} color="secondary" /> 
+
+    </form>
 </>
   }   
   
@@ -108,32 +112,3 @@ const Upload = () => {
 }
 
 export default Upload 
-
-
-{/* <form onSubmit={handleUpload}>
-
-        <div>
-            <label for="name">
-                NAME
-            </label>
-            <input type="name"
-                placeholder='Name your upload' onChange={(e) => setName(e.target.value)} value={name}/>
-        </div>
-
-        <div >
-            <label for="image" >
-            SELECT YOUR IMAGE
-            </label>
-            <input type="file" name="image" />
-        </div>
-
-        <div >
-            <label for="tags" >
-                #TAGS
-            </label>
-            <textarea type="tags" 
-                placeholder='Initiate a tag with #,
-                Use commas to seperate tags' onChange={(e) => setTags(e.target.value)} value={tags}/>
-        </div>
-        <button type="submit">Upload Image!!!</button>
-        </form> */}

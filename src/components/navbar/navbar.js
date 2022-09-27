@@ -15,7 +15,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import axios from 'axios';
 import logo from '../../assets/logo.png'
 
@@ -45,8 +44,10 @@ const { logOutUser, user } = useContext(AuthContext);
 const id = user?._id;
 
 useEffect(() => {
+  const storeToken = localStorage.getItem('authToken');
+
   axios
-    .get(`http://localhost:5005/user/${id}/details`)
+    .get(`http://localhost:5005/user/${id}/details`, {headers: {Authorization: `Bearer ${storeToken}`}})
     .then((response) => setDetails(response.data))
     .catch((err) => console.log(err));
   // eslint-disable-next-line
@@ -56,17 +57,6 @@ useEffect(() => {
 
 
   return (
-    // <nav >
-    //     <ul>
-    //       <li><NavLink to={"/home"} > Home</NavLink> </li>
-    //       <li><NavLink to={`/profile/${id}`} > Profile</NavLink> </li>
-    //       <li><NavLink to={"/login"}> Log In</NavLink> </li>
-    //       <li><button onClick={() => {navigate('/join')}}> Join Chat</button> </li>
-    //       <li><NavLink to={"/explore"}> Explore</NavLink> </li>
-    //       <li><button onClick={logOutUser}> Log Out</button> </li>
-          
-    //     </ul>
-    // </nav>
 
     <AppBar position="static" >
     <Container maxWidth="xl" >
@@ -156,29 +146,41 @@ useEffect(() => {
 
         
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+           
+            {!user &&
+
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
             <Link to='/'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Login</Typography></Link>
             </Button>
+            }
+
+            {user &&
+            <>
+
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
             <Link to='explore'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Explore</Typography></Link>
             </Button>
+
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
             <Link to='join'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Chat</Typography></Link>
             </Button>
-         
+           
+            </>
+            }
 
 
         </Box>
 
+        {user && 
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -212,6 +214,8 @@ useEffect(() => {
       
           </Menu>
         </Box>
+           
+            }
       </Toolbar>
     </Container>
   </AppBar>

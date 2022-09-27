@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import image from "../assets/profile.png";
 
 import Avatar from '@mui/material/Avatar';
@@ -17,7 +16,6 @@ import Typography from '@mui/material/Typography';
 
 
 const SignUpPage = ({toggler}) => {
-    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -67,7 +65,6 @@ const SignUpPage = ({toggler}) => {
             id="name"
             label="Name"
             name="name"
-            autoComplete="name"
             autoFocus
             onChange={(e) => setName(e.target.value)} 
             value={name}
@@ -80,7 +77,6 @@ const SignUpPage = ({toggler}) => {
             label="Username"
             type="username"
             id="username"
-            autoComplete="current-username"
             onChange={(e) => setUsername(e.target.value)} 
             value={username}
           />
@@ -92,8 +88,6 @@ const SignUpPage = ({toggler}) => {
             id="email"
             label="Email Address"
             name="email"
-            autoComplete="email"
-            autoFocus
             onChange={(e) => setEmail(e.target.value)} 
             value={email}
           />
@@ -105,8 +99,6 @@ const SignUpPage = ({toggler}) => {
             id="password"
             label="Password"
             name="password"
-            autoComplete="password"
-            autoFocus
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
