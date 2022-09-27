@@ -1,118 +1,167 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import {AuthContext} from '../context/context';
+import { AuthContext } from "../context/context";
 
 import Comment from "../components/review/comment";
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CommentIcon from '@mui/icons-material/Comment';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import {theme} from '../index'
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from "@mui/icons-material/Comment";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Link from "@mui/material/Link";
 
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
+import { theme } from "../index";
 
 const ImagePage = () => {
   const { id } = useParams();
   const [image, setImage] = useState({});
   const [comments, setComments] = useState(false);
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const userId = user?._id;
-  const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
+  const breakpoint = useMediaQuery(theme.breakpoints.down("sm" && "md"));
 
   useEffect(() => {
-    const storeToken = localStorage.getItem('authToken');
+    const storeToken = localStorage.getItem("authToken");
 
     axios
-      .get(`http://localhost:5005/home/image/${id}`, {headers: {Authorization: `Bearer ${storeToken}`}})
+      .get(`http://localhost:5005/home/image/${id}`, {
+        headers: { Authorization: `Bearer ${storeToken}` },
+      })
       .then((res) => {
-        setImage(res.data)
+        setImage(res.data);
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLike = (e) => {
-    e.preventDefault();  
+    e.preventDefault();
     axios
-        .post(`http://localhost:5005/home/image/like`, {userId, id})
-        .then((res) => {
-          setTimeout(window.location.reload(), 1000)
-          console.log(res)})
-        .catch((err) => console.log(err))
-  }
+      .post(`http://localhost:5005/home/image/like`, { userId, id })
+      .then((res) => {
+        setTimeout(window.location.reload(), 1000);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
 
-
+  const [value, setValue] = useState("1");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
-
     // First Section
 
-    <Grid container spacing={3}>
-
-      <Grid item md={12} sx={{mt: 5}}>
-        <Typography variant='h3' align="center">{image.name} </Typography>
+    <Grid container spacing={{ xs: 0, md: 2 }} sx={{ p: 1 }}>
+      <Grid item xs={12}>
+        <Typography variant="h3" align="center">
+          {image.name}{" "}
+        </Typography>
       </Grid>
 
-      <Grid item md={12} sx={{mt: 1}}>
-          <Typography variant='subtitle' align="center" color="secondary">{image?.tags?.join(" ")}</Typography>
+      <Grid item xs={12}>
+        <Typography variant="subtitle" align="center" color="secondary">
+          {image?.tags?.join(" ")}
+        </Typography>
       </Grid>
 
-      <Grid item md={12} sx={{mb: 5}}>
-        <Typography variant='subtitle' align="center">This image was posted by: {image?.owner?.username} </Typography>
+      <Grid item xs={12} sx={{ mb: { xs: 1 } }}>
+        <Typography variant="subtitle" align="center">
+          This image was posted by{" "}
+          <Link color="secondary" href={`/profile/${image?.owner?._id}`}>
+            @{image?.owner?.username}{" "}
+          </Link>
+        </Typography>
       </Grid>
 
-    {/* // Middle Section */}
+      {/* // Middle Section */}
 
-      <Grid item md={6}>
+      <Grid item xs={12} md={6}>
         <img
           src={image.imageUrl}
           alt={image.name}
           loading="lazy"
           style={{
             width: "100%",
-        }}
+          }}
         />
 
-
-        <div onClick={handleLike} style={{position:"relative", top:`${breakpoint ? '-25%' : '-15%'}`, display: "flex", alignItems: "center", justifyContent:"flex-end", margin:"10px", padding:"1px"}}>
-          <FavoriteIcon  /> 
-          {image?.likes?.length} 
+        <div
+          onClick={handleLike}
+          style={{
+            position: "relative",
+            top: `${breakpoint ? "-25%" : "-15%"}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            margin: "10px",
+            padding: "1px",
+          }}
+        >
+          <FavoriteIcon />
+          {image?.likes?.length}
         </div>
- 
 
-        <div onClick={() => setComments(!comments)} style={{position:"relative", top:`${breakpoint ? '-25%' : '-15%'}`, display: "flex", alignItems: "center", justifyContent:"flex-end", margin:"10px"}}> 
-          <CommentIcon  /> 
-          {image?.comments?.length} 
+        <div
+          onClick={() => setComments(!comments)}
+          style={{
+            position: "relative",
+            top: `${breakpoint ? "-25%" : "-15%"}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            margin: "10px",
+          }}
+        >
+          <CommentIcon />
+          {image?.comments?.length}
         </div>
 
-        {comments && <Comment id={id} /> }
-
-
+        {comments && <Comment id={id} />}
       </Grid>
+      <Grid item xs={12} md={6}>
+        <Box sx={{ width: "100%" }}>
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList
+                onChange={handleChange}
 
+                textColor="secondary"
+                indicatorColor="secondary"
+                aria-label="secondary tabs example"
 
-      <Grid item md={2}>
-      {image?.likes?.map((like) => (
-            <h3 key={like?._id}>{like?.username} liked this</h3>
-          ))}
+              >
+                <Tab label="See Likes" value="1"/>
+                <Tab label="See Comments" value="2" />
+              </TabList>
+            
+            </Box>
+            <TabPanel value="1">
+              {image?.likes?.map((like) => (
+                <h3 key={like?._id}> <Link  href={`/profile/${like?._id}`}>@{like?.username}</Link></h3>
+              ))}
+            </TabPanel>
+            <TabPanel value="2" align="left">
+              {image?.comments?.map((comment) => (
+                <h3 key={comment?._id}>
+                  <Link href={`/profile/${comment?.owner?._id}`}>@{comment?.owner?.username}</Link>
+                  {" "}<Typography variant="caption">{comment?.comment}</Typography>
+                </h3>
+              ))}
+            </TabPanel>
+          </TabContext>
+        </Box>
       </Grid>
-
-      <Grid item md={4}>
-        {image?.comments?.map((comment) => (
-              <h3 key={comment?._id}>
-                <span>{comment?.owner?.username} posted: </span>{" "}
-                {comment?.comment}
-              </h3>
-              ))
-        }
-      </Grid>
-    
-     
-   
     </Grid>
-  )
+  );
 };
 
 export default ImagePage;
