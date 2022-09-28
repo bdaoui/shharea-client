@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Upload from '../components/upload/upload';
 import Feed from '../components/feed/feed';
 
 
 const HomePage = () => {
+  const [refresh, setRefresh] = useState(false)
 
   return (
     <div>
 
 
-      <Upload />
-      <Feed />
+      <Upload setRefresh={setRefresh} refresh={refresh}/>
+      <Feed refresh={refresh}/>
 
         </div>
    

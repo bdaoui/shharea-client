@@ -7,22 +7,21 @@ import {
   ImageListItem,
   ImageListItemBar,
   IconButton,
-  Link,
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AuthContext } from "../context/context";
 
 //sx={{ color: (hoverImage[1] === item._id ? "#F06FCB" : "rgba(255, 255, 255, 0.54) ") }}
-
 const ProfilePage = () => {
   const { id } = useParams();
   const [ownImages, setOwnImages] = useState([]);
   const { user } = useContext(AuthContext);
+
   const [hoverImage, setHoverImage] = useState([false, " "]);
+
   const storeToken = localStorage.getItem("authToken");
  
- console.log(hoverImage)
   useEffect(() => {
     axios
       .get(`http://localhost:5005/user/profile/${id}`, {
@@ -40,6 +39,21 @@ const ProfilePage = () => {
       .then((response) => console.log(response.data))
       .catch((err) => console.log(err));
   };
+
+// const changeColor = () =>{
+//   let color;
+//   if(hoverImage[0] && hoverImage[1] ){
+//     console.log( "I'm reading this red")
+//     console.log(hoverImage)
+//     return color = "red"
+//   }
+//   else{color ="black"}
+//   console.log("i'm reading this black")
+  
+//   return color
+
+// }
+
 
   return (
     <div>
@@ -71,11 +85,10 @@ const ProfilePage = () => {
                       // color is set by HoverImage state change
                       <IconButton
                         aria-label={`info about ${item.name}`}
-                        onMouseOver={(e) => setHoverImage([true, item._id])}
+                        onMouseOver={(e) => setHoverImage([!hoverImage[0], item._id])}
                         onMouseOut={(e) => setHoverImage([false, item._id])}
                         sx={{
-                          color:
-                            (hoverImage[1] === item?._id ? "#0CD3FC" : "#F06FCB")
+                          color: (hoverImage[0] && hoverImage[1] === item._id? "#EE4B2B"  : "#F06FCB")
                             
                         }}
                         onClick={() => handleDelete(item._id)}

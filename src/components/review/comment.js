@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const Comment = ({id}) => {
+const Comment = ({id, refresh, setRefresh, comments, setComments}) => {
     const [comment, setComment] = useState("");
     const {user} = useContext(AuthContext);
     const imageId = id
@@ -22,7 +22,11 @@ const Comment = ({id}) => {
         axios
             .post(`http://localhost:5005/home/image/comment`, {comment, imageId, owner})
             .then((res) => {
-                setTimeout(window.location.reload(), 1500)
+
+                // refresh render 
+                setRefresh(!refresh)
+                // close comment form
+                setComments(!comments)
                 console.log(res)})
             .catch((err) => console.log(err))
     }
@@ -50,7 +54,7 @@ const Comment = ({id}) => {
                     /> 
                  
 
-                <Button variant="contained" component="label" color="primary">
+                <Button variant="contained" component="label" color="primary" >
                 COMMENT!
                 <button type="submit" hidden></button>
                 </Button>

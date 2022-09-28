@@ -20,7 +20,7 @@ const ProfileCard = ({ id }) => {
   const [location, setLocation] = useState(userLocation);
 
   const [friend, setFriend] = useState(false);
-
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const storeToken = localStorage.getItem('authToken');
@@ -30,7 +30,7 @@ const ProfileCard = ({ id }) => {
       .then((response) => setDetails(response.data))
       .catch((err) => console.log(err));
     // eslint-disable-next-line
-  }, []);
+  }, [refresh]);
 
   const handleProfile =  (e) => {
     e.preventDefault();
@@ -47,8 +47,12 @@ const ProfileCard = ({ id }) => {
 
     axios
       .post("http://localhost:5005/user/profile", updateProfile )
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        setRefresh(!refresh)
+        toggler()
+        console.log(response.data)
+        })
+      .catch((err) => console.log(err))
   };
 
   const handleFriendship = async () => {

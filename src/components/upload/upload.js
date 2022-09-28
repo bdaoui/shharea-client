@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../../context/context';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
@@ -10,9 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-const Upload = () => {
+const Upload = ({setRefresh, refresh}) => {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [tags, setTags] = useState([]);
     const [toggle, setToggle] = useState(false)
@@ -30,9 +28,16 @@ const Upload = () => {
      
     axios
         .post('http://localhost:5005/home/upload', uploadData)
-        .then((response) => console.log(response))
+        .then((response) => {
+          setRefresh(!refresh)
+          console.log(response)
+        
+        })
         .catch((err) => console.log("Error while uploading the file: ", err));
-        navigate('/home')
+        
+        
+    
+
     };
     
     const toggler = () => {

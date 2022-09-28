@@ -27,6 +27,12 @@ const ImagePage = () => {
   const userId = user?._id;
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm" && "md"));
 
+  // Refresh Render
+  const [refresh, setRefresh] = useState(false)
+
+ // Change Tabs
+  const [value, setValue] = useState("1");
+
   useEffect(() => {
     const storeToken = localStorage.getItem("authToken");
 
@@ -38,25 +44,27 @@ const ImagePage = () => {
         setImage(res.data);
       })
       .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      // eslint-disable-next-line
+  }, [refresh]);
 
   const handleLike = (e) => {
     e.preventDefault();
     axios
       .post(`http://localhost:5005/home/image/like`, { userId, id })
       .then((res) => {
-        setTimeout(window.location.reload(), 1000);
+        setRefresh(!refresh)
         console.log(res);
       })
       .catch((err) => console.log(err));
   };
 
-  const [value, setValue] = useState("1");
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  console.log(comments)
   return (
     // First Section
 
@@ -125,7 +133,7 @@ const ImagePage = () => {
           {image?.comments?.length}
         </div>
 
-        {comments && <Comment id={id} />}
+        {comments && <Comment id={id} refresh={refresh} setRefresh={setRefresh} setComments={setComments} comments={comments} />}
       </Grid>
       <Grid item xs={12} md={6}>
         <Box sx={{ width: "100%" }}>
