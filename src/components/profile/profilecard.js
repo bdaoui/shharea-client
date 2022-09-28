@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/context";
 import axios from "axios";
+import { Button, Card, CardContent, Typography, TextField, Box, IconButton } from "@mui/material";
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
 
 const ProfileCard = ({ id }) => {
   const { user, toggle, setToggle } = useContext(AuthContext);
@@ -75,78 +78,96 @@ const ProfileCard = ({ id }) => {
   return (
     <div>
       <div>
-        <img src={details?.image} alt={details?.name} style={{height: "100px", width: "100px", borderRadius:"10px" }}/>
+        <Card sx={{ justify:'center', align: 'center'}} >
+          <CardContent>
+        <img src={details?.image} alt={details?.name} style={{height: "100px", width: "100px", borderRadius:"50%", marginTop:'20px' }}/>
 
-        <h1>
-          Name: <span>{details?.name}</span>{" "}
-        </h1>
-        <h2>
-          Location: <span>{details?.location}</span>
-        </h2>
-        <h2>Info:</h2>
-        <p>{details?.info}</p>
+        <Typography variant='h5' sx={{margin:'5px'}}  color='primary' >
+          Name: {details?.name}
+        </Typography>
+        <Typography variant='body1' sx={{margin:'5px'}}  color='secondary' >
+          Location: {details?.location}
+          </Typography>
+          <Typography variant='body1' color='primary' sx={{margin:'2px'}}>Info:</Typography>
+          <Typography variant='body2' sx={{margin:'5px', marginBottom: '20px'}}  color='secondary' >{details?.info}</Typography>
 
-        {userId === id && <button onClick={toggler}>Edit</button>}
-
+        {userId === id &&  <Button sx={{marginBottom: '20px', padding: '0'}} variant='contained' onClick={toggler}>Edit</Button>}
+                                 
         {/* Shows if not current user, FRIEND REQUEST*/}
         {!(userId === id) && (
-          <button onClick={handleFriendship}>Friend Request</button>
+          <Button sx={{marginBottom: '20px', padding: '1'}} variant='contained' onClick={handleFriendship}>Friend Request</Button>
+          
         )}
+        </CardContent>
+        </Card>
       </div>
 
       {/* Edit User Information Section*/}
 
       {toggle && (
-        <>
-          <form onSubmit={handleProfile}>
-            <div>
-              <label for="image">Profile Picture</label>
-              <input type="file" name="image"/>
-            </div> 
-            <div>
-              <label for="username">username</label>
-              <input
-                type="text"
-                placeholder={details.username}
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-              />
-            </div> 
-            <div>
-              <label for="email">email</label>
-              <input
-                type="text"
-                placeholder={details.email}
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </div> 
-            <div>
-              <label for="location">Location</label>
-              <input
-                type="text"
-                placeholder={details.location}
-                onChange={(e) => setLocation(e.target.value)}
-                value={location}
-              />
-            </div>
 
-            <div>
-              <label for="info">Info</label>
-              <textarea
-                type="text"
-                placeholder={details.info}
-                onChange={(e) => setInfo(e.target.value)}
-                value={info}
-              />
-            </div>
+          <Box component="form" noValidate onSubmit={handleProfile} sx={{ mt: 1, width: '50%', margin: 'auto'}}>
 
+            <Button variant="contained" component="label" color="primary" sx={{p:0.5, pt:0, pb:0}}>
+            CHOOSE A NEW PROFILE PIC <input type="file" name="image" hidden/>
+            </Button>
+            <IconButton color="secondary" aria-label="upload picture" component="label">
+            <PhotoCamera />
+            </IconButton>
 
-            <div>
-              <button type="submit">Update profile</button>
-            </div>
-          </form>
-        </>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            placeholder={details.username}
+            autoFocus
+            onChange={(e) => setUsername(e.target.value)} 
+            value={username}
+          />
+            <TextField
+            margin="normal"
+            required
+            fullWidth
+            type="email"
+            id="email"
+            label='Email'
+            name="email"
+            placeholder={details.email}
+            onChange={(e) => setEmail(e.target.value)} 
+            value={email}
+          />
+            <TextField
+            margin="normal"
+            required
+            fullWidth
+            type="location"
+            id="location"
+            label='Location'
+            name="location"
+            placeholder={details.location}
+            onChange={(e) => setLocation(e.target.value)}
+            value={location}
+          />
+           <TextField
+            margin="normal"
+            required
+            fullWidth
+            type="info"
+            id="info"
+            label='Info'
+            name="info"
+            placeholder={details.info}
+            onChange={(e) => setInfo(e.target.value)}
+            value={info}
+          />
+    
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Update profile
+          </Button>
+        </Box>
       )}
     </div>
   );

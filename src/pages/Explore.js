@@ -96,7 +96,7 @@ const Explore = () => {
 
         {filteredUser?.map((item) => (
           <div key={item._id}>
-           <Link href={`/home/profile/${item._id}`}>
+           <Link href={`/profile/${item._id}`}>
               <Typography> @{item?.username} </Typography>
             </Link>
           </div>
