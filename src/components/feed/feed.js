@@ -12,10 +12,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {theme} from '../../index'
 import { Typography } from '@mui/material';
 
-const Feed = () => {
+const Feed = ({refresh}) => {
 
 const { images, setImages } = useContext(AuthContext);
 const[hoverImage, setHoverImage] = useState([false,"id"])
+
 useEffect(() => {
   const storeToken = localStorage.getItem('authToken');
 
@@ -24,8 +25,8 @@ useEffect(() => {
         .then((res) => setImages(res.data))
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
-
+}, [refresh])
+  
 
 const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
 
