@@ -1,11 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -74,37 +69,43 @@ const Explore = () => {
         }
       />
 
-      <Grid container xs={12} col={2}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{p:2}}>
+        <Grid item xs={8} >
+        <Typography sx={{mb:4}}> Images </Typography>
 
-        {filteredImage?.map((item) => (
-          <Grid container xs={6} key={item._id} col={1}>
-            <Grid>
-              <img
+          {filteredImage?.map((item) => (
+          <Grid container key={item._id} col={1} sx={{pl: {md:"40%"} }} alignItems="center">
+              
+               <img
                 src={item.imageUrl}
                 alt={item.name}
                 style={{ width: "150px" }}
               />
-            </Grid>
-
-            <Grid>
-              <Link href={`/home/image/${item._id}`}>
-                <Typography> {item?.name} </Typography>
+          
+              <Link href={`/home/image/${item._id}` }>
+                <Typography sx={{pl:1}}> {item?.name} </Typography>
               </Link>
-            </Grid>
 
+         
           </Grid>
-        ))}
+          ))}
+        </Grid>
+
+        <Grid item xs={2}>
+        <Typography sx={{mb:4}} > Users </Typography>
 
         {filteredUser?.map((item) => (
-          <Grid container xs={6} key={item._id} col={1}>
-            <Link href={`/home/profile/${item._id}`}>
-              <Typography> {item?.username} </Typography>
+          <div key={item._id}>
+           <Link href={`/home/profile/${item._id}`}>
+              <Typography> @{item?.username} </Typography>
             </Link>
-          </Grid>
+          </div>
         ))}
-
-
+        </Grid>
+      
       </Grid>
+
+
     </>
   );
 };
