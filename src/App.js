@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
+import React, {useContext} from "react"
+
 import Auth from './pages/Auth'
-import SignUpPage from './pages/SignUpPage'
-import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import ImagePage from './pages/ImagePage'
 import ProfilePage from "./pages/ProfilePage"
@@ -11,10 +11,16 @@ import JoinChat from './pages/chat/JoinChat';
 import Explore from './pages/Explore';
 import OutletComponent from './context/outlet';
 import Error from './pages/Error';
+import {AuthContext} from './context/context'
+
 
 function App() {
+const {isLoggedIn} = useContext(AuthContext);
+
   return (
     <div className="App">
+
+    {isLoggedIn &&
     <Routes>
       <Route element={<OutletComponent />} >
         <Route path="/" element={<Auth />} />
@@ -28,6 +34,23 @@ function App() {
       <Route path="/room/:id" element={<Chat />} />
       <Route path="" element={<Error />} />
     </Routes>
+    }
+
+    {!isLoggedIn &&
+    <Routes>
+      <Route element={<OutletComponent />} >
+        <Route path="/" element={<Auth />} />
+        <Route path="/home" element={<Auth />} />
+        <Route path="/home/image/:id" element={<Auth />} />
+        <Route path="/profile/:id" element={<Auth />} />
+        <Route path="/explore" element={<Auth/>} />
+        <Route path="/join" element={<Auth />} />
+      </Route>
+      
+      <Route path="/room/:id" element={<Auth />} />
+      <Route path="" element={<Error />} />
+    </Routes>
+    }
     </div>
   );
 }

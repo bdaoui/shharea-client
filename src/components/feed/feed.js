@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import axios from 'axios'
 import {AuthContext} from '../../context/context';
 import ImageList from '@mui/material/ImageList';
@@ -10,12 +10,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {theme} from '../../index'
+import { Typography } from '@mui/material';
 
 const Feed = () => {
 
 const { images, setImages } = useContext(AuthContext);
-
-
+const[hoverImage, setHoverImage] = useState([false,"id"])
 useEffect(() => {
   const storeToken = localStorage.getItem('authToken');
 
@@ -36,16 +36,19 @@ const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
        
   <ImageList sx={{ width: '98%', height: '100%', margin:'auto' }} variant="masonry" cols={breakpoint ? 1 : 4 } gap={2} >
     {images?.map((item) => (
-    <ImageListItem key={item._id}>
-      <img src={`${item.imageUrl}?w=500&fit=crop&auto=format`} srcSet={`${item.imageUrl}?w=500&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy" />
+    <ImageListItem key={item._id}  >
+      <img src={`${item.imageUrl}?w=500&fit=crop&auto=format`} srcSet={`${item.imageUrl}?w=500&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy" onMouseOver={(e)=> setHoverImage([true, item._id])} onMouseOut={(e) => setHoverImage([false, item._id])} />
         <Link href={`/home/image/${item._id}`}>
-        <ImageListItemBar title={item?.name} subtitle={`Posted by @${item?.owner?.username}`} actionIcon={
-          <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} aria-label={`info about ${item.name}`}>
+        <ImageListItemBar title={item?.name} subtitle={`Posted by @${item?.owner?.username}`} actionIcon={ 
+          // color is set by HoverImage state change
+          <IconButton sx={{ color: (hoverImage[1] === item._id ? "#F06FCB" : "rgba(255, 255, 255, 0.54) ") }} aria-label={`info about ${item.name}`} >
+
+
+            <FavoriteIcon  />  <Typography variant="caption" sx={{mr:1}}>{item.likes.length}</Typography>
+            <CommentIcon /> <Typography variant="caption" sx={{mr:1}}>{item.comments.length}</Typography> 
+
             
-            <FavoriteIcon sx={{mr:1}} /> 
-            <CommentIcon />
-            
-          </IconButton>}/></Link>
+          </IconButton> }  /></Link>
     </ImageListItem>))}
   </ImageList>
   }
