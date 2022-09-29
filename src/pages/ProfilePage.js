@@ -29,6 +29,7 @@ const ProfilePage = () => {
       })
       .then((response) => setOwnImages(response.data))
       .catch((err) => console.log(err));
+   // eslint-disable-next-line
   }, [id]);
 
   const handleDelete = (id) => {

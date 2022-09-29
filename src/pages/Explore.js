@@ -6,15 +6,24 @@ import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { theme } from "../index";
+import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from "@mui/icons-material/Comment";
 
 const Explore = () => {
   const storeToken = localStorage.getItem("authToken");
-
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
-
+  const copyData = [...data];
+  const images = copyData[0];
+  const users = copyData[1];
+  const breakpoint = useMediaQuery(theme.breakpoints.down("sm" && "md"));
   const one = "http://localhost:5005/home/search/upload";
   const two = "http://localhost:5005/home/search/user";
+  
   const requestOne = axios.get(one, {
     headers: { Authorization: `Bearer ${storeToken}` },
   });
@@ -34,10 +43,6 @@ const Explore = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const copyData = [...data];
-  const images = copyData[0];
-  const users = copyData[1];
-
   let filteredImage = images?.filter((image) => {
     return (
       image.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -51,7 +56,7 @@ const Explore = () => {
       user.username.toLowerCase().includes(query.toLowerCase())
     );
   });
-
+ 
   return (
     <>
       <Input
@@ -69,43 +74,47 @@ const Explore = () => {
         }
       />
 
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{p:2}}>
-        <Grid item xs={8} >
-        <Typography sx={{mb:4}}> Images </Typography>
+      <Grid container>
+        <Grid xs={8}>
+          <Typography sx={{ mb: 4, align: "left" }} color='secondary'>Images</Typography>
+          <ImageList
+            sx={{ width: "100%", height: "100%", marginLeft: "15px" }}
+            variant="masonry"
+            cols={breakpoint ? 1 : 4}
+            gap={2}
+          >
+            {filteredImage?.map((item) => (
+              <ImageListItem key={item._id}>
+                <img
+                  src={`${item.imageUrl}?w=500&fit=crop&auto=format`}
+                  srcSet={`${item.imageUrl}?w=500&fit=crop&auto=format&dpr=2 2x`}
+                  alt={item.name}
+                  loading="lazy"
+                />
+                <Link href={`/home/image/${item._id}`}>
+                  <ImageListItemBar title="" subtitle={item?.name} />
+                </Link>
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Grid>
 
-          {filteredImage?.map((item) => (
-          <Grid container key={item._id} col={1} sx={{pl: {md:"40%"} }} alignItems="center">
-              
-               <img
-                src={item.imageUrl}
-                alt={item.name}
-                style={{ width: "150px" }}
+        <Grid xs={4} sx={{ width: "100%", height: "100%" }}>
+          <Typography sx={{ mb: 4 }} color='secondary'> Users </Typography>
+
+          {filteredUser?.map((item) => (
+            <div key={item._id}>
+              <img
+                src={item.image}
+                style={{ height: "40px", width: "40px", borderRadius: "50%" }}
               />
-          
-              <Link href={`/home/image/${item._id}` }>
-                <Typography sx={{pl:1}}> {item?.name} </Typography>
+              <Link href={`/profile/${item._id}`}>
+                <Typography sx={{ mb: "20px" }}> @{item?.username} </Typography>
               </Link>
-
-         
-          </Grid>
+            </div>
           ))}
         </Grid>
-
-        <Grid item xs={2}>
-        <Typography sx={{mb:4}} > Users </Typography>
-
-        {filteredUser?.map((item) => (
-          <div key={item._id}>
-           <Link href={`/profile/${item._id}`}>
-              <Typography> @{item?.username} </Typography>
-            </Link>
-          </div>
-        ))}
-        </Grid>
-      
       </Grid>
-
-
     </>
   );
 };
