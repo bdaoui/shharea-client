@@ -2,10 +2,10 @@ import React from 'react';
 import {Outlet} from "react-router-dom";
 import NavBar from '../components/navbar/navbar';
 
-function OutletComponent() {
+function OutletComponent({setTheme, theme}) {
   return (
     <div>
-        <NavBar />
+        <NavBar setTheme={setTheme} theme={theme} />
         <Outlet />
 
     </div>

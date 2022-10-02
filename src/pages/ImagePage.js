@@ -17,7 +17,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
-import { theme } from "../index";
+import { darkTheme, lightTheme } from "../App";
 
 const ImagePage = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const ImagePage = () => {
   const [comments, setComments] = useState(false);
   const { user } = useContext(AuthContext);
   const userId = user?._id;
-  const breakpoint = useMediaQuery(theme.breakpoints.down("sm" && "md"));
+  const breakpoint = useMediaQuery(darkTheme.breakpoints.down('sm' && 'md') || lightTheme.breakpoints.down('sm' && 'md'));
 
   // Refresh Render
   const [refresh, setRefresh] = useState(false)

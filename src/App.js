@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import React, {useContext} from "react"
+import React, {useContext, useState} from "react"
 
 import Auth from './pages/Auth'
 import HomePage from './pages/HomePage'
@@ -13,16 +13,75 @@ import OutletComponent from './context/outlet';
 import Error from './pages/Error';
 import {AuthContext} from './context/context'
 
+import { ThemeProvider, createTheme, CssBaseline   } from '@mui/material';
+
+export  const lightTheme  = createTheme (
+  {
+    palette: {
+        background: {
+          default:  '#FFFFFF',
+          paper: '#0c0c0c',
+
+        },
+        primary: {
+          main: '#0CD3FC',
+        },
+        secondary: {
+          main: '#F06FCB',
+        },
+        error: {
+          main: '#A495D8',
+        },
+        text: {
+          primary: '#000000',
+          secondary: '#000000',
+        },
+      
+        
+      },  
+
+});
+
+export  const darkTheme  = createTheme (
+  {
+    palette: {
+        background: {
+          default:  '#4c4a4a',
+          paper: '#0c0c0c',
+
+        },
+        primary: {
+          main: '#0CD3FC',
+        },
+        secondary: {
+          main: '#F06FCB',
+        },
+        error: {
+          main: '#A495D8',
+        },
+        text: {
+          primary: '#ffffff',
+          secondary: '#FFFFFF',
+        },
+      
+        
+      },  
+
+});
+
 
 function App() {
+const [theme, setTheme] = useState(true)
 const {isLoggedIn} = useContext(AuthContext);
 
   return (
     <div className="App">
+      <ThemeProvider theme={theme ? darkTheme : lightTheme}>
+        <CssBaseline />
 
     {isLoggedIn &&
     <Routes>
-      <Route element={<OutletComponent />} >
+      <Route element={<OutletComponent setTheme={setTheme} theme={theme}/>} >
         <Route path="/" element={<Auth />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/home/image/:id" element={<ImagePage />} />
@@ -51,6 +110,9 @@ const {isLoggedIn} = useContext(AuthContext);
       <Route path="" element={<Error />} />
     </Routes>
     }
+
+      </ThemeProvider>
+
     </div>
   );
 }

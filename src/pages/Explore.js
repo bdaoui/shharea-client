@@ -8,10 +8,8 @@ import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { theme } from "../index";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import CommentIcon from "@mui/icons-material/Comment";
+import { darkTheme, lightTheme } from "../App";
+
 
 const Explore = () => {
   const storeToken = localStorage.getItem("authToken");
@@ -20,7 +18,7 @@ const Explore = () => {
   const copyData = [...data];
   const images = copyData[0];
   const users = copyData[1];
-  const breakpoint = useMediaQuery(theme.breakpoints.down("sm" && "md"));
+  const breakpoint = useMediaQuery(darkTheme.breakpoints.down('sm' && 'md') || lightTheme.breakpoints.down('sm' && 'md'));
   const one = "http://localhost:5005/home/search/upload";
   const two = "http://localhost:5005/home/search/user";
   
@@ -107,6 +105,7 @@ const Explore = () => {
               <img
                 src={item.image}
                 style={{ height: "40px", width: "40px", borderRadius: "50%" }}
+                alt={item.name}
               />
               <Link href={`/profile/${item._id}`}>
                 <Typography sx={{ mb: "20px" }}> @{item?.username} </Typography>

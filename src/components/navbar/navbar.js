@@ -16,9 +16,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
 
-const NavBar = () => {
+import Switch from "@mui/material/Switch"; 
+
+
+const NavBar = ({setTheme, theme}) => {
 
 const [anchorElNav, setAnchorElNav] = useState(null);
 const [anchorElUser, setAnchorElUser] = useState(null);
@@ -208,10 +211,17 @@ useEffect(() => {
               <Link to={`profile/${id}`} style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Profile</Typography></Link>
               </MenuItem>
 
+        
+
+
               <MenuItem onClick={handleCloseUserMenu}>
-              <Typography textAlign="center" onClick={logOutUser}>Logout</Typography>
+              <Typography sx={{ textDecoration: 'none', color:'white'  }} textAlign="center" onClick={logOutUser}>Logout</Typography>
               </MenuItem>
       
+            
+            <MenuItem>
+              <Switch check={theme} onChange={ (e) => setTheme(!theme)}  />
+            </MenuItem>
           </Menu>
         </Box>
            

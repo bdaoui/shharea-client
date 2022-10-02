@@ -9,7 +9,7 @@ import Link from '@mui/material/Link';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {theme} from '../../index'
+import {darkTheme, lightTheme} from '../../App'
 import { Typography } from '@mui/material';
 
 const Feed = ({refresh}) => {
@@ -26,9 +26,9 @@ useEffect(() => {
         .catch((err) => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [refresh])
-  
 
-const breakpoint = useMediaQuery(theme.breakpoints.down('sm' && 'md'));
+
+const breakpoint = useMediaQuery(darkTheme.breakpoints.down('sm' && 'md') || lightTheme.breakpoints.down('sm' && 'md'));
 
   return (
     <div>
