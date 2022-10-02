@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ApiContext } from "./context/context";
 import { ThemeProvider, createTheme, CssBaseline   } from '@mui/material';
 
-export const theme = createTheme ({
+export const lightTheme = createTheme ({
     palette: {
         background: {
           default: '#4c4a4a',
@@ -27,31 +27,41 @@ export const theme = createTheme ({
           secondary: '#FFFFFF',
         },
 
-        // type: 'light',
-        // primary: {
-        //   main: '#0CD3FC',
-        // },
-        // secondary: {
-        //   main: '#F06FCB',
-        // },
-        // error: {
-        //   main: '#A495D8',
-        // },
-        // background: {
-        //   default: '#9a9a9a',
-        //   paper: '#ffffff',
-        // },
-        // text: {
-        //   primary: '#000000',
-        //   secondary: 'rgba(84,84,84,0.7)',
-        // },
+
     },  
 });
+
+
+export const darkTheme = createTheme ({
+  palette: {
+      background: {
+        default: '#4c4a4a',
+        paper: '#0c0c0c',
+      },
+      primary: {
+        main: '#0CD3FC',
+      },
+      secondary: {
+        main: '#F06FCB',
+      },
+      error: {
+        main: '#A495D8',
+      },
+      text: {
+        primary: '#ffffff',
+        secondary: '#FFFFFF',
+      },
+
+
+  },  
+});
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router> 
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <CssBaseline /> 
         <ApiContext>
           <App />
