@@ -42,8 +42,9 @@ const handleCloseUserMenu = () => {
 const { logOutUser, user } = useContext(AuthContext);
 const id = user?._id;
 
+const storeToken = localStorage.getItem('authToken');
+
 useEffect(() => {
-  const storeToken = localStorage.getItem('authToken');
 
   axios
     .get(`https://mittens-buffalo.cyclic.app/user/${id}/details`, {headers: {Authorization: `Bearer ${storeToken}`}})
@@ -66,7 +67,7 @@ useEffect(() => {
           variant="h6"
           noWrap
           component="a"
-          href="/home"
+          href= {storeToken ? "/home" : "/"}
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
@@ -128,7 +129,7 @@ useEffect(() => {
           variant="h5"
           noWrap
           component="a"
-          href="/home"
+          href= {storeToken ? "/home" : "/"} 
           sx={{
             mr: 2,
             display: { xs: 'flex', md: 'none' },
