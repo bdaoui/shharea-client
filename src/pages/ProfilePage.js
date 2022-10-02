@@ -24,7 +24,7 @@ const ProfilePage = () => {
  
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/user/profile/${id}`, {
+      .get(`https://mittens-buffalo.cyclic.app/user/profile/${id}`, {
         headers: { Authorization: `Bearer ${storeToken}` },
       })
       .then((response) => setOwnImages(response.data))
@@ -34,7 +34,7 @@ const ProfilePage = () => {
 
   const handleDelete = (id) => {
     axios 
-      .delete(`http://localhost:5005/home/image/${id}`, 
+      .delete(`https://mittens-buffalo.cyclic.app/home/image/${id}`, 
       { headers: { Authorization: `Bearer ${storeToken}` },
       })
       .then((response) => console.log(response.data))
