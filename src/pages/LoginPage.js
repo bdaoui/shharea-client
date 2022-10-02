@@ -33,8 +33,8 @@ const LoginPage = ({toggler}) => {
             console.log("JWT token", response.data.authToken);
             setToken(response.data.authToken);
             authenticateUser();
-            navigate("/home");
           })
+          .then(response => navigate("/home") )
           .catch((error) => console.log(error));
       };
 
