@@ -113,20 +113,20 @@ useEffect(() => {
             }}
           >
 
-            {!user &&
+            {!storeToken &&
 
                <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='/'  style={{ textDecoration: 'none', color:'white' }}><Typography textAlign="center">Login</Typography></Link>
                 </MenuItem> 
             }
 
-              {user && 
+              {storeToken && 
                 <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='explore'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Explore</Typography></Link>
                 </MenuItem> 
               }
               
-              {user &&  
+              {storeToken &&  
                 
                 <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='join'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Chat</Typography></Link>
@@ -160,7 +160,7 @@ useEffect(() => {
         
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
            
-            {!user &&
+            {!storeToken &&
 
             <Button
               onClick={handleCloseNavMenu}
@@ -170,7 +170,7 @@ useEffect(() => {
             </Button>
             }
 
-            {user &&
+            {storeToken &&
             <>
 
             <Button
@@ -193,7 +193,7 @@ useEffect(() => {
 
         </Box>
 
-        {user && 
+        {storeToken && 
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
