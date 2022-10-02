@@ -19,7 +19,7 @@ const ProfileCard = ({ id }) => {
   const [info, setInfo] = useState(userInfo);
   const [location, setLocation] = useState(userLocation);
 
-  const [friend, setFriend] = useState(false);
+  // const [friend, setFriend] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -55,18 +55,18 @@ const ProfileCard = ({ id }) => {
       .catch((err) => console.log(err))
   };
 
-  const handleFriendship = async () => {
-    (await friend) ? setFriend(false) : setFriend(true);
-    try {
-      const friendsResponse = await axios.post(
-        `http://localhost:5005/user/${id}/friends`,
-        { userId }
-      );
-      console.log(friendsResponse);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleFriendship = async () => {
+  //   (await friend) ? setFriend(false) : setFriend(true);
+  //   try {
+  //     const friendsResponse = await axios.post(
+  //       `http://localhost:5005/user/${id}/friends`,
+  //       { userId }
+  //     );
+  //     console.log(friendsResponse);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // Show and Hide Edit Form
 
@@ -98,10 +98,10 @@ const ProfileCard = ({ id }) => {
         {userId === id &&  <Button sx={{marginBottom: '20px', padding: '0'}} variant='contained' onClick={toggler}>Edit</Button>}
                                  
         {/* Shows if not current user, FRIEND REQUEST*/}
-        {!(userId === id) && (
+        {/* {!(userId === id) && (
           <Button sx={{marginBottom: '20px', padding: '1'}} variant='contained' onClick={handleFriendship}>Friend Request</Button>
           
-        )}
+        )} */}
         </CardContent>
         </Card>
       </div>

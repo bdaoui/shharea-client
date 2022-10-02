@@ -12,7 +12,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AuthContext } from "../context/context";
 
-//sx={{ color: (hoverImage[1] === item._id ? "#F06FCB" : "rgba(255, 255, 255, 0.54) ") }}
+
 const ProfilePage = () => {
   const { id } = useParams();
   const [ownImages, setOwnImages] = useState([]);
@@ -29,6 +29,7 @@ const ProfilePage = () => {
       })
       .then((response) => setOwnImages(response.data))
       .catch((err) => console.log(err));
+   // eslint-disable-next-line
   }, [id]);
 
   const handleDelete = (id) => {
@@ -39,20 +40,6 @@ const ProfilePage = () => {
       .then((response) => console.log(response.data))
       .catch((err) => console.log(err));
   };
-
-// const changeColor = () =>{
-//   let color;
-//   if(hoverImage[0] && hoverImage[1] ){
-//     console.log( "I'm reading this red")
-//     console.log(hoverImage)
-//     return color = "red"
-//   }
-//   else{color ="black"}
-//   console.log("i'm reading this black")
-  
-//   return color
-
-// }
 
 
   return (
@@ -105,41 +92,7 @@ const ProfilePage = () => {
           ))}
       </ImageList>
 
-      {/* {
-        ownImages && 
-        ownImages?.map( item =>{
-           return (
-          <div key={item?._id}>
-            <img
-              src={item?.imageUrl}
-              alt={item?.name}
-              loading="lazy"
-              style={{
-                display: 'block',
-                width: '25%',
-              }}
-            />
-            <Link to={`/home/image/${item?._id}`}>{item?.name}</Link>
-            
-            <span>{item?.tags}</span>
-
-            <div> 
-              <h2>This Image Has {item?.comments?.length} comments</h2>
-              {item?.comments?.map(comment => {
-                return <p key={comment._id}><span>{comment?.owner?.username} said: </span> {comment.comment}</p>
-              })}
-            </div>
-           
-            <div> 
-              <h2>This Image Has {item?.likes?.length} Likes</h2>
-              {item?.likes?.map(like => {
-                return <p key={like._id}><span>{like?.username} liked it </span></p>
-              })}
-            </div>
-
-
-     </div>
-        )})} */}
+     
     </div>
   );
 };
