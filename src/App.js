@@ -34,7 +34,7 @@ function App() {
       <Route path="" element={<Error />} />
     </Routes>
     }
-
+{/* 
     {!isLoggedIn &&
     <Routes>
       <Route element={<OutletComponent />} >
@@ -49,7 +49,7 @@ function App() {
       <Route path="/room/:id" element={<Auth />} />
       <Route path="" element={<Error />} />
     </Routes>
-    }
+    } */}
     </div>
   );
 }

@@ -112,15 +112,28 @@ useEffect(() => {
               display: { xs: 'block', md: 'none' },
             }}
           >
-              <MenuItem onClick={handleCloseNavMenu}>
+
+            {!user &&
+
+               <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='/'  style={{ textDecoration: 'none', color:'white' }}><Typography textAlign="center">Login</Typography></Link>
                 </MenuItem> 
+            }
+
+              {user && 
                 <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='explore'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Explore</Typography></Link>
                 </MenuItem> 
+              }
+              
+              {user &&  
+                
                 <MenuItem onClick={handleCloseNavMenu}>
                  <Link to='join'  style={{ textDecoration: 'none', color:'white'  }}><Typography textAlign="center">Chat</Typography></Link>
                 </MenuItem> 
+              }
+          
+          
           </Menu>
         </Box>
 

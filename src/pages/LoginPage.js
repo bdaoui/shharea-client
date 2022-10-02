@@ -21,7 +21,6 @@ const LoginPage = ({toggler}) => {
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setErrorMessage] = useState(undefined);
   const { setToken, authenticateUser } = useContext(AuthContext);
 
   const handleLoginSubmit = (e) => {
@@ -36,10 +35,7 @@ const LoginPage = ({toggler}) => {
             authenticateUser();
             navigate("/home");
           })
-          .catch((error) => {
-            const errorDescription = error?.response?.data?.message;
-            setErrorMessage(errorDescription);
-          });
+          .catch((error) => console.log(error));
       };
 
   return (
