@@ -14,12 +14,12 @@ import Error from './pages/Error';
 
 
 function App() {
-  const isLoggedIn = localStorage.getItem('authToken');
+  // const isLoggedIn = localStorage.getItem('authToken');
 
   return (
     <div className="App">
 
-    {isLoggedIn &&
+
     <Routes>
       <Route element={<OutletComponent />} >
         <Route path="/" element={<Auth />} />
@@ -33,7 +33,7 @@ function App() {
       <Route path="/room/:id" element={<Chat />} />
       <Route path="" element={<Error />} />
     </Routes>
-    }
+ 
 {/* 
     {!isLoggedIn &&
     <Routes>
