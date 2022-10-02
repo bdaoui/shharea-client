@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {Link, useNavigate} from "react-router-dom"; 
+import {Link} from "react-router-dom"; 
 import {AuthContext} from '../../context/context';
 
 
@@ -39,7 +39,6 @@ const handleCloseUserMenu = () => {
   setAnchorElUser(null);
 };
 
-const navigate = useNavigate()
 const { logOutUser, user } = useContext(AuthContext);
 const id = user?._id;
 
@@ -78,7 +77,7 @@ useEffect(() => {
             textDecoration: 'none',
           }}
         >
-          <img src={logo} style={{width:'120px', height:'30px'}} />
+          <img src={logo} style={{width:'120px', height:'30px'}} alt="sharea logo" />
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -141,7 +140,7 @@ useEffect(() => {
             textDecoration: 'none',
           }}
         >
-         <img src={logo} style={{width:'120px', height:'30px'}} />
+         <img src={logo} style={{width:'120px', height:'30px'}} alt="sharea logo" />
         </Typography>
 
         

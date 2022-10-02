@@ -9,9 +9,7 @@ import Grid from "@mui/material/Grid";
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { theme } from "../index";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import CommentIcon from "@mui/icons-material/Comment";
+
 
 const Explore = () => {
   const storeToken = localStorage.getItem("authToken");
