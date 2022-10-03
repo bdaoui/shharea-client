@@ -37,7 +37,8 @@ const ProfilePage = () => {
       .delete(`https://mittens-buffalo.cyclic.app/home/image/${id}`, 
       { headers: { Authorization: `Bearer ${storeToken}` },
       })
-      .then((response) => console.log(response.data))
+      .then((response) => {setOwnImages(ownImages) // Refresh Render
+        return console.log(response.data)})
       .catch((err) => console.log(err));
   };
 
