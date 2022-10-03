@@ -8,6 +8,7 @@ import {
   ImageListItemBar,
   IconButton,
   Typography,
+  Link
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AuthContext } from "../context/context";
@@ -60,7 +61,6 @@ const ProfilePage = () => {
           ownImages?.map((item) => (
             <div key={item._id}>
               <ImageListItem color="secondary">
-                  {/* <Link href={`/home/image/${item._id}`}> */}
                 <img
                   src={item?.imageUrl}
                   srcSet={item?.imageUrl}
@@ -69,7 +69,7 @@ const ProfilePage = () => {
                 />
               
                   <ImageListItemBar
-                    title={item?.name}
+                    title={<Link href={`/home/image/${item._id}`}> {item?.name} </Link>}
                     actionIcon={
                       // color is set by HoverImage state change
                       <IconButton
