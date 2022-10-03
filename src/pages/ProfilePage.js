@@ -17,8 +17,8 @@ const ProfilePage = () => {
   const { id } = useParams();
   const [ownImages, setOwnImages] = useState([]);
   const { user } = useContext(AuthContext);
-
   const [hoverImage, setHoverImage] = useState([false, " "]);
+  const [refresh, setRefresh] = useState(false)
 
   const storeToken = localStorage.getItem("authToken");
  
@@ -30,17 +30,18 @@ const ProfilePage = () => {
       .then((response) => setOwnImages(response.data))
       .catch((err) => console.log(err));
    // eslint-disable-next-line
-  }, [id]);
+  }, [id, refresh]);
 
   const handleDelete = (id) => {
     axios 
       .delete(`https://mittens-buffalo.cyclic.app/home/image/${id}`, 
       { headers: { Authorization: `Bearer ${storeToken}` },
       })
-      .then((response) => {setHoverImage([false, " "]) // Refresh Render
-        return console.log(response.data)})
+      .then((response) => {console.log(response.data)
+      setRefresh(true)})
       .catch((err) => console.log(err));
   };
+
 
 
   return (
